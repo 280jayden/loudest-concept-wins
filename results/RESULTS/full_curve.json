@@ -1,0 +1,44 @@
+{
+ "100%": {
+  "named": 157,
+  "n": 216,
+  "both": 0,
+  "neither": 59,
+  "A_total": 0
+ },
+ "75%": {
+  "named": 159,
+  "n": 216,
+  "both": 3,
+  "neither": 53,
+  "A_total": 7
+ },
+ "50%": {
+  "named": 46,
+  "n": 216,
+  "both": 12,
+  "neither": 42,
+  "A_total": 140
+ },
+ "25%": {
+  "named": 1,
+  "n": 216,
+  "both": 0,
+  "neither": 18,
+  "A_total": 197
+ },
+ "10%": {
+  "named": 0,
+  "n": 216,
+  "both": 0,
+  "neither": 10,
+  "A_total": 206
+ },
+ "0% (control)": {
+  "named": 1,
+  "n": 216,
+  "both": 0,
+  "neither": 9,
+  "A_total": 206
+ }
+}

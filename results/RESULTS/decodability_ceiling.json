@@ -1,0 +1,586 @@
+{
+ "d_sae": 65536,
+ "rows": [
+  {
+   "pair": "The act or proce x Content related to far",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.3709418127934139,
+   "act_B": 0.9870893259843191
+  },
+  {
+   "pair": "The act or proce x Content related to far",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    4,
+    4
+   ],
+   "act_A": 1.8463344424962997,
+   "act_B": 0.39026571810245514
+  },
+  {
+   "pair": "The act or proce x Content related to far",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 199,
+   "rank_B_by_scale": [
+    12,
+    76,
+    146,
+    199,
+    237,
+    262
+   ],
+   "act_A": 1.9269897838433583,
+   "act_B": 0.08482820043961208
+  },
+  {
+   "pair": "The act or proce x Explanations of why so",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.3896040717760723,
+   "act_B": 1.0135942200819652
+  },
+  {
+   "pair": "The act or proce x Explanations of why so",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.8505555888017018,
+   "act_B": 0.42906902854641277
+  },
+  {
+   "pair": "The act or proce x Explanations of why so",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 103,
+   "rank_B_by_scale": [
+    12,
+    44,
+    80,
+    103,
+    122,
+    146
+   ],
+   "act_A": 1.9281680782636006,
+   "act_B": 0.1230584600319465
+  },
+  {
+   "pair": "References to ba x Explanations of why so",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.3447444662451744,
+   "act_B": 0.9985194504261017
+  },
+  {
+   "pair": "References to ba x Explanations of why so",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.8019799987475078,
+   "act_B": 0.41336028029521305
+  },
+  {
+   "pair": "References to ba x Explanations of why so",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 92,
+   "rank_B_by_scale": [
+    9,
+    35,
+    64,
+    92,
+    121,
+    148
+   ],
+   "act_A": 1.8829623460769653,
+   "act_B": 0.10820121069749196
+  },
+  {
+   "pair": "Culinary spices  x Requests for informati",
+   "alpha": 0.5,
+   "rank_A": 2,
+   "rank_B": 1,
+   "rank_B_by_scale": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "act_A": 1.1408096676071484,
+   "act_B": 1.3919604271650314
+  },
+  {
+   "pair": "Culinary spices  x Requests for informati",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.526516358057658,
+   "act_B": 0.6311819838980833
+  },
+  {
+   "pair": "Culinary spices  x Requests for informati",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 7,
+   "rank_B_by_scale": [
+    18,
+    9,
+    7,
+    6,
+    5,
+    5
+   ],
+   "act_A": 1.6004511912663777,
+   "act_B": 0.22260175893704096
+  },
+  {
+   "pair": "The act or proce x Requests for informati",
+   "alpha": 0.5,
+   "rank_A": 2,
+   "rank_B": 1,
+   "rank_B_by_scale": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "act_A": 1.28089706103007,
+   "act_B": 1.3027406285206478
+  },
+  {
+   "pair": "The act or proce x Requests for informati",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.7857737839221954,
+   "act_B": 0.5316466030975183
+  },
+  {
+   "pair": "The act or proce x Requests for informati",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 94,
+   "rank_B_by_scale": [
+    12,
+    72,
+    82,
+    94,
+    107,
+    111
+   ],
+   "act_A": 1.9040715247392654,
+   "act_B": 0.12617708990971246
+  },
+  {
+   "pair": "Culinary spices  x Descriptions of physic",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.0822024916609128,
+   "act_B": 1.0543058440089226
+  },
+  {
+   "pair": "Culinary spices  x Descriptions of physic",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.507183422644933,
+   "act_B": 0.4051952163378398
+  },
+  {
+   "pair": "Culinary spices  x Descriptions of physic",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 141,
+   "rank_B_by_scale": [
+    17,
+    64,
+    123,
+    141,
+    176,
+    212
+   ],
+   "act_A": 1.5942479968070984,
+   "act_B": 0.07425868511199951
+  },
+  {
+   "pair": "References to ba x Descriptions of physic",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.2933454637726147,
+   "act_B": 1.0721313953399658
+  },
+  {
+   "pair": "References to ba x Descriptions of physic",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.7779622673988342,
+   "act_B": 0.4357886140545209
+  },
+  {
+   "pair": "References to ba x Descriptions of physic",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 102,
+   "rank_B_by_scale": [
+    10,
+    44,
+    68,
+    102,
+    128,
+    150
+   ],
+   "act_A": 1.8744831780592601,
+   "act_B": 0.10493482959767182
+  },
+  {
+   "pair": "The act or proce x Forceful taking or the",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.266690914829572,
+   "act_B": 1.092512845993042
+  },
+  {
+   "pair": "The act or proce x Forceful taking or the",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.795994405945142,
+   "act_B": 0.4484428347398837
+  },
+  {
+   "pair": "The act or proce x Forceful taking or the",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 119,
+   "rank_B_by_scale": [
+    12,
+    58,
+    88,
+    119,
+    151,
+    166
+   ],
+   "act_A": 1.9091523538033168,
+   "act_B": 0.11370892512301604
+  },
+  {
+   "pair": "References to ba x Forceful taking or the",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.338739387691021,
+   "act_B": 1.1330126772324245
+  },
+  {
+   "pair": "References to ba x Forceful taking or the",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.7985943953196208,
+   "act_B": 0.5104571978251139
+  },
+  {
+   "pair": "References to ba x Forceful taking or the",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 21,
+   "rank_B_by_scale": [
+    10,
+    8,
+    13,
+    21,
+    23,
+    28
+   ],
+   "act_A": 1.8817244668801625,
+   "act_B": 0.17805203112463155
+  },
+  {
+   "pair": "References to ba x Medical discussions of",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.296342131992181,
+   "act_B": 1.1090750495592754
+  },
+  {
+   "pair": "References to ba x Medical discussions of",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.7816332678000133,
+   "act_B": 0.47035978486140567
+  },
+  {
+   "pair": "References to ba x Medical discussions of",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 47,
+   "rank_B_by_scale": [
+    10,
+    11,
+    26,
+    47,
+    68,
+    84
+   ],
+   "act_A": 1.8759527206420898,
+   "act_B": 0.13473709238072237
+  },
+  {
+   "pair": "The act or proce x Medical discussions of",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.346164142092069,
+   "act_B": 1.1000979393720627
+  },
+  {
+   "pair": "The act or proce x Medical discussions of",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.832691232363383,
+   "act_B": 0.45287588735421497
+  },
+  {
+   "pair": "The act or proce x Medical discussions of",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 110,
+   "rank_B_by_scale": [
+    13,
+    36,
+    80,
+    110,
+    151,
+    165
+   ],
+   "act_A": 1.9220482061306636,
+   "act_B": 0.11591868723432223
+  },
+  {
+   "pair": "Culinary spices  x The assistant should p",
+   "alpha": 0.5,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.0777802641193073,
+   "act_B": 1.0235404645403225
+  },
+  {
+   "pair": "Culinary spices  x The assistant should p",
+   "alpha": 0.75,
+   "rank_A": 1,
+   "rank_B": 2,
+   "rank_B_by_scale": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "act_A": 1.502164214849472,
+   "act_B": 0.4163475800305605
+  },
+  {
+   "pair": "Culinary spices  x The assistant should p",
+   "alpha": 0.9,
+   "rank_A": 1,
+   "rank_B": 65,
+   "rank_B_by_scale": [
+    17,
+    55,
+    61,
+    65,
+    76,
+    91
+   ],
+   "act_A": 1.5922416547934215,
+   "act_B": 0.10031095022956531
+  }
+ ],
+ "median_rank_B": {
+  "50%": 2,
+  "25%": 2,
+  "10%": 102
+ }
+}

@@ -1,0 +1,93 @@
+{
+  "metric_validation": {
+    "random_dir_false_pos": "0/144",
+    "pureA_to_B_false_pos": "0/90",
+    "sensitivity_pureB": "78/90 (86.7%)",
+    "manual_agreement": "23/25 (92%)"
+  },
+  "exp1_synthetic_trained": {
+    "n": 630,
+    "both": "10 (1.6%)",
+    "minority_at_alpha0.75": "0/90"
+  },
+  "exp1_untrained": {
+    "n": 630,
+    "both": 0,
+    "note": "uninterpretable - fails pure-endpoint check"
+  },
+  "exp2_list_prompt": {
+    "alpha0.5": "7.8% -> 31.2%",
+    "alpha0.75": "0.0% -> 1.0%"
+  },
+  "exp3_safety_sweep": {
+    "_SUPERSEDED": "old values 58/252, 1/252, 0/216 used uneven denominators; see exp3_safety_sweep_constant_basis"
+  },
+  "exp4_constructed": {
+    "dominant": "147/324 (45.4%)",
+    "minority": "84/396 (21.2%)",
+    "ratio": 0.47,
+    "by_share": {
+      "<20%": "6.2%",
+      "20-30%": "11.1%",
+      "30-40%": "27.8%",
+      "40-50%": "29.2%"
+    }
+  },
+  "exp5_external_news": {
+    "dominant": "136/360 (37.8%)",
+    "minority": "75/384 (19.5%)",
+    "ratio": 0.52
+  },
+  "exp6_monitoring_position": {
+    "content_named": "0/84 (0.0%)",
+    "refusal_mentioned": "10/84 (11.9%)",
+    "benign_false_alarms": 0
+  },
+  "exp7_layer_sweep": {
+    "content_named": "1/864 (0.1%)",
+    "layers": [
+      4,
+      8,
+      12,
+      16,
+      19,
+      22,
+      25,
+      28,
+      31
+    ]
+  },
+  "exp8_architecture": {
+    "scalar_affine_alpha0.75": "0/90",
+    "sa_lowrank_alpha0.75": "0/54",
+    "note": "SA+LR has 135169 params vs 4097; same failure"
+  },
+  "exp3_safety_sweep_constant_basis": {
+    "basis": "12 pairs valid at all 3 ratios x 6 injection scales x 3 descriptions = 216 per ratio",
+    "at_50pct": "46/216 (21.3%)",
+    "at_25pct": "1/216 (0.5%)",
+    "at_10pct": "0/216 (0.0%)",
+    "robustness_hitA_filtered": {
+      "50": "12/140 (8.6%)",
+      "25": "0/197",
+      "10": "0/206"
+    },
+    "note": "restricting to descriptions that DID name the dominant concept LOWERS 50% detection 21.3->8.6%"
+  },
+  "exp9_gemma_nla_cross_architecture": {
+    "model": "gemma-3-12b-it, NLA verbaliser kitft/nla-gemma3-12b-L32-av, Gemma Scope 2 L32",
+    "basis": "7 gate-passing pairs x 6 descriptions = 42 per ratio, identical Llama protocol",
+    "at_50pct": "36/42 (86%)",
+    "at_25pct": "13/42 (31%)",
+    "at_10pct": "2/42 (5%)",
+    "metric_false_positive_floor": "9/48 (18.8%)",
+    "metric_sensitivity": "24/24 (100%)",
+    "excluded": "programming (behavioural Gate 1 = 0.20; passed keyword gate only on the word 'code')",
+    "construction": "v = b_dec + 30000 * normalize(a*dA + (1-a)*dB); measured ratios 0.73-1.21 / 0.21-0.39 / 0.04-0.12"
+  },
+  "_metric_floors": {
+    "llama": "0% (0/144 random, 0/90 pureA->B)",
+    "gemma": "18.8% (9/48)",
+    "warning": "different floors - do not compare the two curves against one threshold"
+  }
+}

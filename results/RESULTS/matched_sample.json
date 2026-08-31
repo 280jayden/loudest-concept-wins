@@ -1,0 +1,39 @@
+{
+ "basis": "12 pairs x 6 magnitudes x 3 descriptions = 216 per ratio",
+ "scalar_affine": {
+  "50%": [
+   46,
+   216
+  ],
+  "25%": [
+   1,
+   216
+  ],
+  "10%": [
+   0,
+   216
+  ]
+ },
+ "low_rank": {
+  "50%": [
+   60,
+   216
+  ],
+  "25%": [
+   0,
+   216
+  ],
+  "10%": [
+   0,
+   216
+  ]
+ },
+ "control_scalar_affine": [
+  1,
+  216
+ ],
+ "control_low_rank": [
+  0,
+  216
+ ]
+}

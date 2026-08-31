@@ -1,0 +1,67 @@
+{
+  "metric_validation": {
+    "random_dir_false_pos": "0/144",
+    "pureA_to_B_false_pos": "0/90",
+    "sensitivity_pureB": "78/90 (86.7%)",
+    "manual_agreement": "23/25 (92%)"
+  },
+  "exp1_synthetic_trained": {
+    "n": 630,
+    "both": "10 (1.6%)",
+    "minority_at_alpha0.75": "0/90"
+  },
+  "exp1_untrained": {
+    "n": 630,
+    "both": 0,
+    "note": "uninterpretable - fails pure-endpoint check"
+  },
+  "exp2_list_prompt": {
+    "alpha0.5": "7.8% -> 31.2%",
+    "alpha0.75": "0.0% -> 1.0%"
+  },
+  "exp3_safety_sweep": {
+    "concerning_at_50pct": "58/252 (23.0%)",
+    "at_25pct": "1/252 (0.4%)",
+    "at_9pct": "0/216 (0.0%)"
+  },
+  "exp4_constructed": {
+    "dominant": "147/324 (45.4%)",
+    "minority": "84/396 (21.2%)",
+    "ratio": 0.47,
+    "by_share": {
+      "<20%": "6.2%",
+      "20-30%": "11.1%",
+      "30-40%": "27.8%",
+      "40-50%": "29.2%"
+    }
+  },
+  "exp5_external_news": {
+    "dominant": "136/360 (37.8%)",
+    "minority": "75/384 (19.5%)",
+    "ratio": 0.52
+  },
+  "exp6_monitoring_position": {
+    "content_named": "0/84 (0.0%)",
+    "refusal_mentioned": "10/84 (11.9%)",
+    "benign_false_alarms": 0
+  },
+  "exp7_layer_sweep": {
+    "content_named": "1/864 (0.1%)",
+    "layers": [
+      4,
+      8,
+      12,
+      16,
+      19,
+      22,
+      25,
+      28,
+      31
+    ]
+  },
+  "exp8_architecture": {
+    "scalar_affine_alpha0.75": "0/90",
+    "sa_lowrank_alpha0.75": "0/54",
+    "note": "SA+LR has 135169 params vs 4097; same failure"
+  }
+}

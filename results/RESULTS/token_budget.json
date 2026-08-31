@@ -1,0 +1,17 @@
+{
+ "n": 216,
+ "median_words": 6,
+ "counts": {
+  "A": 141,
+  "neither": 34,
+  "both": 9,
+  "B": 32
+ },
+ "baseline_max_new_30": {
+  "A": 128,
+  "B": 34,
+  "both": 12,
+  "neither": 42,
+  "median_words": 6
+ }
+}

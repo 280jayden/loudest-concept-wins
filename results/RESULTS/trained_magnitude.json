@@ -1,0 +1,38 @@
+{
+ "100%": {
+  "named": 165,
+  "n": 216,
+  "both": 0,
+  "neither": 49
+ },
+ "75%": {
+  "named": 162,
+  "n": 216,
+  "both": 0,
+  "neither": 50
+ },
+ "50%": {
+  "named": 33,
+  "n": 216,
+  "both": 14,
+  "neither": 27
+ },
+ "25%": {
+  "named": 0,
+  "n": 216,
+  "both": 0,
+  "neither": 7
+ },
+ "10%": {
+  "named": 0,
+  "n": 216,
+  "both": 0,
+  "neither": 10
+ },
+ "0% (control)": {
+  "named": 0,
+  "n": 216,
+  "both": 0,
+  "neither": 8
+ }
+}

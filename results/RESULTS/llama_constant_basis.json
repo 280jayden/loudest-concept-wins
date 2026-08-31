@@ -1,0 +1,44 @@
+{
+ "pairs": [
+  "Culinary spices  x Descriptions of physic",
+  "Culinary spices  x Requests for informati",
+  "Culinary spices  x The assistant should p",
+  "References to ba x Descriptions of physic",
+  "References to ba x Explanations of why so",
+  "References to ba x Forceful taking or the",
+  "References to ba x Medical discussions of",
+  "The act or proce x Content related to far",
+  "The act or proce x Explanations of why so",
+  "The act or proce x Forceful taking or the",
+  "The act or proce x Medical discussions of",
+  "The act or proce x Requests for informati"
+ ],
+ "constant": {
+  "50": [
+   46,
+   216
+  ],
+  "25": [
+   1,
+   216
+  ],
+  "9": [
+   0,
+   216
+  ]
+ },
+ "hitA_filtered": {
+  "50": [
+   12,
+   140
+  ],
+  "25": [
+   0,
+   197
+  ],
+  "9": [
+   0,
+   206
+  ]
+ }
+}

@@ -24,7 +24,7 @@ The 25% row and the control row are the same number.
 
 Gemma-3-12B-IT with the Fraser-Taliente et al. natural language autoencoder verbaliser,
 200 per ratio, holds the minority concept at a 25% share (55/200 against a 35/200
-false-positive floor, p = 0.017) and loses it by 10%. A better interpreter moves the
+false-positive floor, p = 0.017) and loses it by 10%. A better method moves the
 threshold down one step.
 
 ## Method

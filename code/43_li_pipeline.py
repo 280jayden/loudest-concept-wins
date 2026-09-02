@@ -56,7 +56,9 @@ def seed_of(*p):
 
 # ----------------------------------------------------------------------------- 0 env
 log("=== stage 0: environment ===")
-assert os.environ.get("HF_TOKEN"), "HF_TOKEN not set"
+if not os.environ.get("HF_TOKEN") and os.path.exists("/workspace/.hf_token"):
+    os.environ["HF_TOKEN"] = open("/workspace/.hf_token").read().strip()
+assert os.environ.get("HF_TOKEN"), "HF_TOKEN not set and /workspace/.hf_token missing"
 POD_ID = os.environ.get("RUNPOD_POD_ID", "")
 HAS_RUNPODCTL = subprocess.run("which runpodctl", shell=True, capture_output=True).returncode == 0
 log(f"runpodctl present: {HAS_RUNPODCTL}   RUNPOD_POD_ID: {POD_ID or 'MISSING'}")

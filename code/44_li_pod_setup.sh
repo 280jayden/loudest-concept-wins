@@ -3,7 +3,8 @@
 # Run once on a fresh RunPod pod with an 80 GB card and a /workspace volume.
 #   HF_TOKEN=... bash 44_li_pod_setup.sh
 set -euo pipefail
-: "${HF_TOKEN:?set HF_TOKEN}"
+[ -z "${HF_TOKEN:-}" ] && [ -f /workspace/.hf_token ] && export HF_TOKEN="$(cat /workspace/.hf_token)"
+: "${HF_TOKEN:?set HF_TOKEN or write it to /workspace/.hf_token}"
 
 cd /workspace
 mkdir -p /workspace/li /workspace/RESULTS

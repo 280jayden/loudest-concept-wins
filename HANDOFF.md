@@ -146,6 +146,11 @@ unit norm. Pure-concept recovery by magnitude: 19%, 75%, 81%, 97%, 97%, 67%
 
 **Layer sweep.** 9 layers (4, 8, 12, 16, 19, 22, 25, 28, 31), 864 descriptions.
 Second concept named 1/864 (0.1%).
+NOTE: this is NOT the constructed-vector setup. It reads the last-token hidden state of 8
+real loaded prompts (the same PAIRED2 set as the monitoring experiment), so there is no
+controlled ratio, and the outcome is a manual read of whether the description names the
+concerning content rather than generation scoring. No false-positive control. Cut from the
+write-up's ruled-out list for these reasons; it does not isolate layer for the collapse.
 
 **List prompt (asking explicitly for multiple concepts).** Both named 7/90 -> 30/96
 at parity; 0/90 -> 1/96 at a 25% share.

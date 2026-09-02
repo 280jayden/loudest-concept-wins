@@ -1,8 +1,8 @@
-# The loudest concept wins
+# One concept per activation
 
-Introspection methods describe one concept per activation. When a second concept holds
-a quarter of the activation or less, it is named at the same rate as a concept that was
-never in the activation at all.
+Introspection methods fail to verbalize all concepts within superimposed activations.
+When a second concept holds a quarter of the activation or less, it is named at the same
+rate as a concept that was never in the activation at all.
 
 MATS 12.0 application project (Neel Nanda's stream).
 

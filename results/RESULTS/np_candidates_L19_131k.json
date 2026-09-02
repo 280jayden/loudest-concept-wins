@@ -1,0 +1,756 @@
+{
+ "fraud": [
+  {
+   "index": 22395,
+   "desc": " references to scams and fraudulent activities involving monetary deception",
+   "sim": 0.725,
+   "maxAct": 5.438,
+   "density": 7.000000000000001e-05
+  },
+  {
+   "index": 125117,
+   "desc": " references to financial fraud and scams",
+   "sim": 0.716,
+   "maxAct": 4.25,
+   "density": 7.000000000000001e-05
+  },
+  {
+   "index": 127290,
+   "desc": " terms related to fraudulent activities and scams",
+   "sim": 0.696,
+   "maxAct": 7.312,
+   "density": 0.0001
+  },
+  {
+   "index": 45615,
+   "desc": " references to scams or misleading narratives",
+   "sim": 0.672,
+   "maxAct": 0.676,
+   "density": 0
+  },
+  {
+   "index": 50009,
+   "desc": " references to scams and cyber threats targeting individuals and organizations",
+   "sim": 0.668,
+   "maxAct": 5.719,
+   "density": 0.00025
+  },
+  {
+   "index": 25455,
+   "desc": "terms associated with scams and warnings related to consumer protection",
+   "sim": 0.663,
+   "maxAct": 6.281,
+   "density": 0.00017
+  },
+  {
+   "index": 16616,
+   "desc": " references to consumer protection and advice on scams",
+   "sim": 0.656,
+   "maxAct": 6.375,
+   "density": 0.00029
+  },
+  {
+   "index": 43190,
+   "desc": " phrases warning about scams or fraudulent activities related to donations and consumer protection",
+   "sim": 0.651,
+   "maxAct": 3.875,
+   "density": 2e-05
+  }
+ ],
+ "bombs": [
+  {
+   "index": 59899,
+   "desc": " references to explosive devices and related materials",
+   "sim": 0.722,
+   "maxAct": 4.938,
+   "density": 0.00017
+  },
+  {
+   "index": 54263,
+   "desc": " references to bomb-related incidents and activities",
+   "sim": 0.689,
+   "maxAct": 8.188,
+   "density": 0.00025
+  },
+  {
+   "index": 83173,
+   "desc": " terms related to explosives and their characteristics",
+   "sim": 0.623,
+   "maxAct": 4.531,
+   "density": 0.00027
+  },
+  {
+   "index": 85634,
+   "desc": "terms associated with explosive devices and bomb-related incidents",
+   "sim": 0.62,
+   "maxAct": 5.156,
+   "density": 0.00016
+  },
+  {
+   "index": 25034,
+   "desc": " repeated mentions of the word \"Bomb.\"",
+   "sim": 0.612,
+   "maxAct": 14.5,
+   "density": 7.000000000000001e-05
+  },
+  {
+   "index": 15491,
+   "desc": "words and terms related to explosions or blasting",
+   "sim": 0.593,
+   "maxAct": 7.125,
+   "density": 2e-05
+  },
+  {
+   "index": 72345,
+   "desc": " references to nuclear weapons and related testing activities",
+   "sim": 0.566,
+   "maxAct": 3.359,
+   "density": 0.00014
+  },
+  {
+   "index": 70529,
+   "desc": "references to explosive events or growth",
+   "sim": 0.548,
+   "maxAct": 8.062,
+   "density": 0.00012
+  }
+ ],
+ "violence": [
+  {
+   "index": 117218,
+   "desc": "references to physical violence or assault",
+   "sim": 0.789,
+   "maxAct": 6.75,
+   "density": 0.00013
+  },
+  {
+   "index": 72036,
+   "desc": " instances of physical violence and injury",
+   "sim": 0.757,
+   "maxAct": 4.875,
+   "density": 0.00021
+  },
+  {
+   "index": 95299,
+   "desc": " references to violent acts and assaults",
+   "sim": 0.753,
+   "maxAct": 4.812,
+   "density": 0.00019
+  },
+  {
+   "index": 22996,
+   "desc": "terms related to violence and acts of physical harm",
+   "sim": 0.748,
+   "maxAct": 8.375,
+   "density": 2e-05
+  },
+  {
+   "index": 13178,
+   "desc": " instances of physical aggression or violence",
+   "sim": 0.742,
+   "maxAct": 9.688,
+   "density": 4e-05
+  },
+  {
+   "index": 120955,
+   "desc": " incidents of violence or assault",
+   "sim": 0.735,
+   "maxAct": 4.812,
+   "density": 0.00018
+  },
+  {
+   "index": 5624,
+   "desc": " instances of physical altercations or violence",
+   "sim": 0.714,
+   "maxAct": 8.188,
+   "density": 0.00011
+  },
+  {
+   "index": 59570,
+   "desc": " instances of violence and physical altercations",
+   "sim": 0.708,
+   "maxAct": 4.781,
+   "density": 0.0009
+  }
+ ],
+ "opioids": [
+  {
+   "index": 5048,
+   "desc": "terms related to overdose incidents and their consequences",
+   "sim": 0.617,
+   "maxAct": 6.469,
+   "density": 2e-05
+  },
+  {
+   "index": 9661,
+   "desc": "terms related to opioid addiction and its implications",
+   "sim": 0.613,
+   "maxAct": 6.906,
+   "density": 2e-05
+  },
+  {
+   "index": 86616,
+   "desc": "terms associated with prescription drug policies and opioid misuse",
+   "sim": 0.59,
+   "maxAct": 6.469,
+   "density": 0.00062
+  },
+  {
+   "index": 41854,
+   "desc": "references to death and causes related to drug overdoses",
+   "sim": 0.584,
+   "maxAct": 3.422,
+   "density": 4e-05
+  },
+  {
+   "index": 91126,
+   "desc": " terms related to prescription drug regulations and abuse",
+   "sim": 0.562,
+   "maxAct": 5.438,
+   "density": 0.00048
+  },
+  {
+   "index": 59150,
+   "desc": " terms related to prescription medications and opioids",
+   "sim": 0.559,
+   "maxAct": 2.031,
+   "density": 1e-05
+  },
+  {
+   "index": 20975,
+   "desc": "variations of the drug oxycodone and related compounds",
+   "sim": 0.557,
+   "maxAct": 8.062,
+   "density": 6e-05
+  },
+  {
+   "index": 81038,
+   "desc": " references to legal and regulatory issues surrounding drug abuse",
+   "sim": 0.539,
+   "maxAct": 3.344,
+   "density": 0.00039
+  }
+ ],
+ "extremism": [
+  {
+   "index": 125203,
+   "desc": "references to far-right ideologies and associated terms",
+   "sim": 0.63,
+   "maxAct": 7.656,
+   "density": 0.00012
+  },
+  {
+   "index": 15652,
+   "desc": "terms related to extremism and supremacy",
+   "sim": 0.601,
+   "maxAct": 5.344,
+   "density": 5e-05
+  },
+  {
+   "index": 124033,
+   "desc": " references to harmful or extremist ideologies",
+   "sim": 0.584,
+   "maxAct": 1.367,
+   "density": 1e-05
+  },
+  {
+   "index": 82442,
+   "desc": " references to political extremism and radical movements",
+   "sim": 0.575,
+   "maxAct": 5,
+   "density": 0.00154
+  },
+  {
+   "index": 51493,
+   "desc": "references to extremism or oppressive ideologies",
+   "sim": 0.561,
+   "maxAct": 3.297,
+   "density": 6e-05
+  },
+  {
+   "index": 64431,
+   "desc": " references to political controversies and far-right affiliations",
+   "sim": 0.554,
+   "maxAct": 5.5,
+   "density": 0.00205
+  },
+  {
+   "index": 92090,
+   "desc": " references to hate and related sentiments",
+   "sim": 0.547,
+   "maxAct": 6.875,
+   "density": 2e-05
+  },
+  {
+   "index": 73820,
+   "desc": " references to anti-Semitism and its relation to extremist ideologies",
+   "sim": 0.54,
+   "maxAct": 1.93,
+   "density": 0.00011
+  }
+ ],
+ "spices": [
+  {
+   "index": 73564,
+   "desc": "cooking-related herbs and seasonings",
+   "sim": 0.802,
+   "maxAct": 7,
+   "density": 0.00039
+  },
+  {
+   "index": 54591,
+   "desc": " ingredients related to seasoning and flavor enhancement",
+   "sim": 0.768,
+   "maxAct": 6.562,
+   "density": 0.00025
+  },
+  {
+   "index": 82243,
+   "desc": " ingredients and seasonings used in cooking recipes",
+   "sim": 0.711,
+   "maxAct": 7.406,
+   "density": 0.00015
+  },
+  {
+   "index": 64862,
+   "desc": " references to a specific type of spice or seasoning",
+   "sim": 0.708,
+   "maxAct": 5.969,
+   "density": 8e-05
+  },
+  {
+   "index": 128807,
+   "desc": " ingredients and spices used in cooking recipes",
+   "sim": 0.702,
+   "maxAct": 6.844,
+   "density": 0.00039
+  },
+  {
+   "index": 91084,
+   "desc": "references to spices and ingredients commonly used in cooking",
+   "sim": 0.675,
+   "maxAct": 4.344,
+   "density": 0.00036
+  },
+  {
+   "index": 3003,
+   "desc": " references to spices and their usage in cooking",
+   "sim": 0.673,
+   "maxAct": 4.75,
+   "density": 0.00031
+  },
+  {
+   "index": 108160,
+   "desc": " references to specific ingredients and spices used in cooking",
+   "sim": 0.664,
+   "maxAct": 5.094,
+   "density": 0.00026
+  }
+ ],
+ "theft": [
+  {
+   "index": 120590,
+   "desc": " words and phrases related to theft or stealing",
+   "sim": 0.721,
+   "maxAct": 8.688,
+   "density": 8e-05
+  },
+  {
+   "index": 110615,
+   "desc": " references to theft or stealing",
+   "sim": 0.684,
+   "maxAct": 5.156,
+   "density": 0.00025
+  },
+  {
+   "index": 69273,
+   "desc": "terms related to theft and criminal activities",
+   "sim": 0.66,
+   "maxAct": 4.938,
+   "density": 0.00111
+  },
+  {
+   "index": 94468,
+   "desc": "terms related to burglary and theft",
+   "sim": 0.657,
+   "maxAct": 7.719,
+   "density": 1e-05
+  },
+  {
+   "index": 95778,
+   "desc": " references to theft and stolen goods",
+   "sim": 0.645,
+   "maxAct": 4.594,
+   "density": 5e-05
+  },
+  {
+   "index": 4234,
+   "desc": "terms related to theft or illegal activities",
+   "sim": 0.642,
+   "maxAct": 0.938,
+   "density": 0
+  },
+  {
+   "index": 28405,
+   "desc": "references to robbery and related criminal activities",
+   "sim": 0.617,
+   "maxAct": 6.375,
+   "density": 3e-05
+  },
+  {
+   "index": 7119,
+   "desc": "references to stolen items or theft incidents",
+   "sim": 0.612,
+   "maxAct": 6.719,
+   "density": 8e-05
+  }
+ ],
+ "malware": [
+  {
+   "index": 82686,
+   "desc": " mentions of malware, specifically ransomware",
+   "sim": 0.755,
+   "maxAct": 0.914,
+   "density": 0
+  },
+  {
+   "index": 13131,
+   "desc": "terms related to ransomware and malware",
+   "sim": 0.735,
+   "maxAct": 5.469,
+   "density": 0.00042
+  },
+  {
+   "index": 6791,
+   "desc": "references to ransomware and its characteristics",
+   "sim": 0.718,
+   "maxAct": 3.797,
+   "density": 2e-05
+  },
+  {
+   "index": 89977,
+   "desc": "references to ransomware and related malware terminology",
+   "sim": 0.704,
+   "maxAct": 9.875,
+   "density": 2e-05
+  },
+  {
+   "index": 67690,
+   "desc": " references to ransomware and its effects",
+   "sim": 0.701,
+   "maxAct": 4.219,
+   "density": 1e-05
+  },
+  {
+   "index": 90480,
+   "desc": " references to ransomware and associated terms",
+   "sim": 0.695,
+   "maxAct": 3.562,
+   "density": 3e-05
+  },
+  {
+   "index": 85753,
+   "desc": " references to ransomware and data loss",
+   "sim": 0.687,
+   "maxAct": 1.938,
+   "density": 2e-05
+  },
+  {
+   "index": 61607,
+   "desc": "terms related to hacking and cyber attacks",
+   "sim": 0.681,
+   "maxAct": 8.125,
+   "density": 6e-05
+  }
+ ],
+ "weapons": [
+  {
+   "index": 100544,
+   "desc": " words related to firearms and weaponry",
+   "sim": 0.716,
+   "maxAct": 4.188,
+   "density": 0.00013
+  },
+  {
+   "index": 76330,
+   "desc": "references to firearms",
+   "sim": 0.715,
+   "maxAct": 5.719,
+   "density": 0.00014
+  },
+  {
+   "index": 35308,
+   "desc": "references to firearms and military weaponry",
+   "sim": 0.709,
+   "maxAct": 5.969,
+   "density": 0.00112
+  },
+  {
+   "index": 114567,
+   "desc": "terms related to weaponry or firearms",
+   "sim": 0.707,
+   "maxAct": 0.738,
+   "density": 0
+  },
+  {
+   "index": 114233,
+   "desc": " terms related to firearms and weaponry",
+   "sim": 0.699,
+   "maxAct": 3.375,
+   "density": 4e-05
+  },
+  {
+   "index": 95441,
+   "desc": " references to firearms and weapons-related terminology",
+   "sim": 0.698,
+   "maxAct": 3.422,
+   "density": 5e-05
+  },
+  {
+   "index": 115617,
+   "desc": " references to firearms and related components",
+   "sim": 0.693,
+   "maxAct": 3.531,
+   "density": 8.999999999999999e-05
+  },
+  {
+   "index": 71237,
+   "desc": "references to the word \"guns.\"",
+   "sim": 0.683,
+   "maxAct": 7.156,
+   "density": 2e-05
+  }
+ ],
+ "selfharm": [
+  {
+   "index": 6595,
+   "desc": "references to self-harm and suicidal actions",
+   "sim": 0.746,
+   "maxAct": 5.531,
+   "density": 0.0002
+  },
+  {
+   "index": 76300,
+   "desc": " references to self-harm and suicidal thoughts",
+   "sim": 0.733,
+   "maxAct": 5.594,
+   "density": 3e-05
+  },
+  {
+   "index": 127060,
+   "desc": "references to self-harm or suicidal actions",
+   "sim": 0.73,
+   "maxAct": 0.531,
+   "density": 0
+  },
+  {
+   "index": 7321,
+   "desc": " references to self-injurious behaviors or incidents",
+   "sim": 0.675,
+   "maxAct": 0.486,
+   "density": 0
+  },
+  {
+   "index": 71773,
+   "desc": "references to suicide and related concepts",
+   "sim": 0.665,
+   "maxAct": 6.969,
+   "density": 3e-05
+  },
+  {
+   "index": 121623,
+   "desc": " references to suicide and suicidal behavior",
+   "sim": 0.646,
+   "maxAct": 8.875,
+   "density": 5e-05
+  },
+  {
+   "index": 51674,
+   "desc": " themes related to suicidal thoughts and actions",
+   "sim": 0.639,
+   "maxAct": 7.312,
+   "density": 2e-05
+  },
+  {
+   "index": 84101,
+   "desc": "references to self-sabotage and its effects",
+   "sim": 0.582,
+   "maxAct": 8.875,
+   "density": 4e-05
+  }
+ ],
+ "cooking": [
+  {
+   "index": 44109,
+   "desc": "food preparation and cooking methods",
+   "sim": 0.858,
+   "maxAct": 3.172,
+   "density": 8e-05
+  },
+  {
+   "index": 76788,
+   "desc": "actions related to cooking and food preparation",
+   "sim": 0.834,
+   "maxAct": 5.094,
+   "density": 0.00026
+  },
+  {
+   "index": 96196,
+   "desc": "cooking methods and food preparation techniques",
+   "sim": 0.825,
+   "maxAct": 5.469,
+   "density": 0.00024
+  },
+  {
+   "index": 3073,
+   "desc": " actions related to cooking and food preparation",
+   "sim": 0.812,
+   "maxAct": 7.812,
+   "density": 5e-05
+  },
+  {
+   "index": 29196,
+   "desc": " actions related to food preparation and cooking",
+   "sim": 0.801,
+   "maxAct": 0.828,
+   "density": 0
+  },
+  {
+   "index": 38702,
+   "desc": "actions related to cooking and food preparation techniques",
+   "sim": 0.793,
+   "maxAct": 6.25,
+   "density": 4e-05
+  },
+  {
+   "index": 1152,
+   "desc": "instructions related to cooking and food preparation",
+   "sim": 0.781,
+   "maxAct": 4.156,
+   "density": 0.00012
+  },
+  {
+   "index": 120826,
+   "desc": "instructions related to cooking and food preparation",
+   "sim": 0.781,
+   "maxAct": 7.531,
+   "density": 0.0006
+  }
+ ],
+ "baking": [
+  {
+   "index": 21413,
+   "desc": "terms and activities related to baking",
+   "sim": 0.692,
+   "maxAct": 4.312,
+   "density": 3e-05
+  },
+  {
+   "index": 39388,
+   "desc": "terms related to baking and baked goods",
+   "sim": 0.67,
+   "maxAct": 10.312,
+   "density": 7.000000000000001e-05
+  },
+  {
+   "index": 51141,
+   "desc": "terms related to baking and baked goods",
+   "sim": 0.67,
+   "maxAct": 3.984,
+   "density": 0.00029
+  },
+  {
+   "index": 21023,
+   "desc": " terms related to baking",
+   "sim": 0.668,
+   "maxAct": 5.562,
+   "density": 4e-05
+  },
+  {
+   "index": 66622,
+   "desc": "items and equipment associated with baking and food preparation",
+   "sim": 0.658,
+   "maxAct": 2.672,
+   "density": 0.00074
+  },
+  {
+   "index": 104819,
+   "desc": " references to baking processes and ingredients",
+   "sim": 0.644,
+   "maxAct": 3.562,
+   "density": 0.00021
+  },
+  {
+   "index": 65384,
+   "desc": " instructions related to baking and food preparation",
+   "sim": 0.639,
+   "maxAct": 5.562,
+   "density": 0.00022
+  },
+  {
+   "index": 30025,
+   "desc": " items and processes associated with cooking and baking",
+   "sim": 0.632,
+   "maxAct": 3.594,
+   "density": 0.00026
+  }
+ ],
+ "peace": [
+  {
+   "index": 106038,
+   "desc": "discussions around violence and humanitarian issues",
+   "sim": 0.566,
+   "maxAct": 3.359,
+   "density": 0.00058
+  },
+  {
+   "index": 55619,
+   "desc": "references to peace and related organizations or initiatives",
+   "sim": 0.557,
+   "maxAct": 8.312,
+   "density": 4e-05
+  },
+  {
+   "index": 4451,
+   "desc": " references to ceasefires and humanitarian efforts in conflicts",
+   "sim": 0.527,
+   "maxAct": 4.375,
+   "density": 5e-05
+  },
+  {
+   "index": 801,
+   "desc": "content related to rising violence and conflict situations",
+   "sim": 0.502,
+   "maxAct": 1.469,
+   "density": 1e-05
+  },
+  {
+   "index": 103128,
+   "desc": " individuals involved in violent incidents",
+   "sim": 0.501,
+   "maxAct": 4.062,
+   "density": 0.00022
+  },
+  {
+   "index": 96248,
+   "desc": "key phrases related to diplomatic efforts and peace processes",
+   "sim": 0.499,
+   "maxAct": 1.797,
+   "density": 1e-05
+  },
+  {
+   "index": 43155,
+   "desc": " references to violence and accountability related to military actions",
+   "sim": 0.494,
+   "maxAct": 3.375,
+   "density": 0.00048
+  },
+  {
+   "index": 103642,
+   "desc": "mentions of peace and its related concepts",
+   "sim": 0.492,
+   "maxAct": 9.812,
+   "density": 0.00011
+  }
+ ]
+}

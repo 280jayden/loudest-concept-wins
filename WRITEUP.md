@@ -1,41 +1,52 @@
-# The loudest concept wins
+# One concept per activation
 
 ## The question
 
-When an activation contains two concepts in a known proportion, does the model's
-description of that activation name both, or only the dominant one?
+Introspection methods fail to verbalize all concepts within superimposed activations.
+Below a quarter share, the missing concept is reported at the rate of a concept that was
+never in the activation at all.
 
 Introspection methods take an activation, inject it into a model, and read out a natural
-language description of it. SelfIE and Patchscopes established the approach. Pepper et
-al. (arXiv:2602.10352) train small adapters on top of it and report 94% recall@1 against
-SAE feature labels.
+language description of it. SelfIE and Patchscopes established the approach, and Pepper et
+al. train adapters on top of it.
 
-That evaluation is single-concept. A vector containing one known feature goes in, and the
-description is checked for that feature. Recall@1 measures whether the description found
-the thing that was put there. It says nothing about whether the description covers the
-rest of what was present, because in the evaluation there is no rest.
+Every published evaluation of these methods scores the description against one target.
+Patchscopes reports next-token precision@1, whether one object from a (subject, relation,
+object) triplet appears in the generation, RougeL against one entity's Wikipedia
+description, and accuracy on one multi-hop answer. SelfIE reports entity-state
+classification accuracy, edit efficacy against one target answer, and behaviour change
+from injecting one concept. Pepper et al. report recall@1 retrieving one topic out of
+about 50,000, generation scoring against one SAE latent, and extraction of one bridge
+entity. None of these scores higher for a description that covers more of the activation,
+or lower for one that covers less.
 
-Pepper et al. train on single-feature decoder directions and then apply the adapters to
-residual stream activations. Their own comment on the transfer, in the discussion section
-on going from monosemantic to polysemantic, is that "that this works at all is somewhat
-surprising." The evidence for the transfer is that the description recovers a feature they
-were checking for. A residual stream activation at that position holds many features, and
-recall@1 is scored against a single labelled one. A description covering only that feature
-scores the same as a description covering everything in the activation. So the transfer
-leaves open how much of an activation a description covers.
+A real activation is not one concept. Features are superimposed (Elhage et al.,
+arXiv:2209.10652), so a description that names one thing has left the rest out. Pepper et
+al. train on single-feature decoder directions and then apply the adapters to residual
+stream activations, writing that "that this works at all is somewhat surprising." What has
+not been measured is how many of the concepts present in an activation a description
+names, and at what share a present concept stops appearing.
 
-I care about this because of what introspection is already being used for. SelfIE reports
-that it "reveals LLM internal reasoning in cases such as making ethical decisions,
-internalizing prompt injection, and recalling harmful knowledge." The natural language
-autoencoder has gone further: Fraser-Taliente et al. applied it during Claude Opus 4.6's
-pre-deployment audit, where it surfaced evaluation awareness the model held without
-stating it, and where auditing agents using it found the root cause of a model's
-misalignment without access to the training data that caused it.
+The natural language autoencoder is a partial exception. Its reconstructor rebuilds the
+activation from the description, so information the description drops is penalised during
+training. That is an aggregate reconstruction loss and not a per-concept score, and it
+does not say which concepts survive.
 
-A real activation holds many features at once, so a short description that names one of
-them is already leaving the rest out. The audit description named evaluation awareness,
-and whatever else was in that activation went unreported. So a success shows one concept can be recovered, and leaves open how much of
-the activation the description accounted for.
+This matters because of what introspection is already used for. SelfIE reports that it
+"reveals LLM internal reasoning in cases such as making ethical decisions, internalizing
+prompt injection, and recalling harmful knowledge." Fraser-Taliente et al. applied the
+natural language autoencoder during Claude Opus 4.6's pre-deployment audit, where it
+surfaced evaluation awareness the model held without stating it, and where auditing agents
+using it found the root cause of a model's misalignment without access to the training
+data that caused it. An auditor who reads a description and concludes a concept was not
+represented is relying on completeness, which is the property with no number attached.
+
+The same gap has been found on adjacent axes. Huang et al. (arXiv:2309.10312) took
+GPT-4 explanations of GPT-2 XL neurons, tested them for faithfulness rather than the usual
+score, and found high error rates and little causal efficacy. Paulo et al.
+(arXiv:2410.13928) show that which scoring method you use determines which feature
+explanations look good. Both are on auto-interp. This project asks the same kind of
+question about introspection methods, which are the ones being used in audits.
 
 This matters more as models get more capable. If something concerning were held at a small
 share at the position an auditor reads, the description would come back the same as it
@@ -157,8 +168,11 @@ Three checks:
 The first two are the 0% and 100% rows of the main result table.
 
 The metric almost never claims a concept is present when it is not. It misses a real
-concept about a quarter of the time, which is consistent with the roughly 70% generation
-scoring number Pepper et al. report at 70B.
+concept about a quarter of the time. Pepper et al. report generation scoring of 50.1 on
+this exact setup, Llama-3.1-8B with the Goodfire SAE and the scalar affine adapter, and
+71.4 at 70B. So 76.7% on a pure concept is above what the method scores on their full
+validation set at this scale, which is what the gate on describability is doing: the
+concepts here are easier than average.
 
 Both of those matter for reading the main result. The false-positive rate near zero means
 the 0/240 readings are trustworthy. The 77% recovery on a pure concept means the metric
@@ -268,7 +282,7 @@ floor, unlike on Llama where both are at zero.
 
 ## What I ruled out
 
-I tested seven alternative explanations for the collapse. All of them fail.
+I tested six alternative explanations for the collapse. All of them fail.
 
 **Injection magnitude.** The released evaluation config uses
 `scale_values = [0.5, 0.8, 1.3, 2.1, 3.4, 5.5]`, multiples of the trained unit norm.
@@ -276,9 +290,6 @@ Pure-concept recovery across those six is 19%, 75%, 81%, 97%, 97%, 67%, an inver
 with a wide plateau. The collapse holds at all six. Restricting to the two best
 magnitudes (2.1x and 3.4x) gives 97.2% / 95.8% / 30.6% at 100/75/50, and 0/72 at each of
 25%, 10% and control. The strongest version of the method shows the same cliff.
-
-**Layer.** 9 layers (4, 8, 12, 16, 19, 22, 25, 28, 31), 864 descriptions. The second
-concept is named 1/864.
 
 **Prompting.** Asking explicitly for multiple concepts helps at parity and not below:
 both named goes from 7/90 to 30/96 at 50/50, and from 0/90 to 1/96 at a 25% share.
@@ -323,7 +334,7 @@ Whatever decides which concept gets named is not how strongly the concept is rep
 concept dominates by construction. Both are gated to be present. The decoder cosine is
 below 0.1, so they are not competing for the same direction. Something decides which of
 two equal concepts gets described, and I have no account of it. Swapping which concept
-plays which role does not remove it, and none of the seven explanations above predicts
+plays which role does not remove it, and none of the six explanations above predicts
 it.
 
 This is the loose end I would pull first with more time. The obvious candidates are
@@ -332,7 +343,7 @@ training text, how early in the layer stack it becomes linearly readable, how ma
 its natural description takes.
 
 **No mechanism for the collapse.** I have measured the threshold on three methods
-and ruled out seven explanations. I cannot say what the adapter is doing that produces
+and ruled out six explanations. I cannot say what the adapter is doing that produces
 it.
 
 ---
@@ -358,9 +369,13 @@ never mentions a concept still lets the reconstructor recover it, the informatio
 the text in a form a human reader would not see, and the conclusion would need
 qualifying. This is one run away and I did not get to it.
 
-**One threshold, three methods.** I can say the threshold moves with method
-quality because it moved once, between the Llama adapters and the natural language
-autoencoder. Two points is a direction and not a curve.
+**One threshold, three methods, and scale is confounded with method.** I can say the
+threshold moves with method quality because it moved once, between the Llama adapters and
+the natural language autoencoder. Two points is a direction and not a curve. The
+autoencoder is also a bigger model, so I cannot separate a better method from a bigger
+one. This matters because I ran the adapters at the scale where Pepper et al.'s own
+generation scoring is weakest: 50.1 at 8B against 71.4 at 70B. Running the same adapters
+at 70B would hold the method family fixed and vary only scale.
 
 **The metric misses about a quarter of real concepts.** This makes every detection number
 here a floor. It cannot create the collapse, since a metric that under-detects cannot
@@ -461,5 +476,10 @@ alongside recall@1, because recall@1 on single-concept vectors cannot see it.
   arXiv:2602.10352. The adapters, the injection scales, and the scoring procedure.
 - Natural Language Autoencoders, Fraser-Taliente, Kantamneni, Ong, Mossing et al.,
   Transformer Circuits 2026. Model `kitft/nla-gemma3-12b-L32-av`.
+- Toy Models of Superposition, Elhage et al., arXiv:2209.10652
+- Rigorously Assessing Natural Language Explanations of Neurons, Huang, Geiger,
+  D'Oosterlinck, Wu & Potts, arXiv:2309.10312
+- Automatically Interpreting Millions of Features in Large Language Models, Paulo, Mallen,
+  Juang & Belrose, arXiv:2410.13928
 
 Code and all result files: github.com/280jayden/loudest-concept-wins

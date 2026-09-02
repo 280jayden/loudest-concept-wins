@@ -1,0 +1,150 @@
+{
+ "pairs": [
+  "51141:terms related  x 125117:references to fina",
+  "51141:terms related  x 59899:references to expl",
+  "39388:terms related  x 59899:references to expl",
+  "59899:references to  x 73564:cooking-related he",
+  "35308:references to  x 86616:terms associated w",
+  "6595:references to  x 76330:references to fire",
+  "125117:references to  x 51141:terms related to b",
+  "59899:references to  x 51141:terms related to b",
+  "59899:references to  x 39388:terms related to b",
+  "73564:cooking-relate x 59899:references to expl",
+  "86616:terms associat x 35308:references to fire",
+  "76330:references to  x 6595:references to self"
+ ],
+ "n_pairs": 12,
+ "N_DESC": 20,
+ "li": {
+  "100%": {
+   "A": 2,
+   "B": 237,
+   "both": 2,
+   "neither": 3,
+   "n": 240
+  },
+  "75%": {
+   "A": 15,
+   "B": 238,
+   "both": 15,
+   "neither": 2,
+   "n": 240
+  },
+  "50%": {
+   "A": 150,
+   "B": 154,
+   "both": 69,
+   "neither": 5,
+   "n": 240
+  },
+  "25%": {
+   "A": 239,
+   "B": 15,
+   "both": 15,
+   "neither": 1,
+   "n": 240
+  },
+  "10%": {
+   "A": 40,
+   "B": 1,
+   "both": 1,
+   "neither": 0,
+   "n": 40
+  },
+  "0% (control)": {
+   "A": 240,
+   "B": 0,
+   "both": 0,
+   "neither": 0,
+   "n": 240
+  }
+ },
+ "adapter": {
+  "100%": {
+   "A": 1,
+   "B": 227,
+   "both": 1,
+   "neither": 13,
+   "n": 240
+  },
+  "75%": {
+   "A": 35,
+   "B": 200,
+   "both": 5,
+   "neither": 10,
+   "n": 240
+  },
+  "50%": {
+   "A": 111,
+   "B": 115,
+   "both": 2,
+   "neither": 16,
+   "n": 240
+  },
+  "25%": {
+   "A": 199,
+   "B": 34,
+   "both": 2,
+   "neither": 9,
+   "n": 240
+  },
+  "10%": {
+   "A": 40,
+   "B": 0,
+   "both": 0,
+   "neither": 0,
+   "n": 40
+  },
+  "0% (control)": {
+   "A": 233,
+   "B": 1,
+   "both": 1,
+   "neither": 7,
+   "n": 240
+  }
+ },
+ "adapter64": {
+  "100%": {
+   "A": 0,
+   "B": 231,
+   "both": 0,
+   "neither": 9,
+   "n": 240
+  },
+  "75%": {
+   "A": 20,
+   "B": 215,
+   "both": 0,
+   "neither": 5,
+   "n": 240
+  },
+  "50%": {
+   "A": 117,
+   "B": 121,
+   "both": 0,
+   "neither": 2,
+   "n": 240
+  },
+  "25%": {
+   "A": 213,
+   "B": 22,
+   "both": 1,
+   "neither": 6,
+   "n": 240
+  },
+  "10%": {
+   "A": 40,
+   "B": 0,
+   "both": 0,
+   "neither": 0,
+   "n": 40
+  },
+  "0% (control)": {
+   "A": 237,
+   "B": 0,
+   "both": 0,
+   "neither": 3,
+   "n": 240
+  }
+ }
+}

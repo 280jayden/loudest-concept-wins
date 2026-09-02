@@ -1,0 +1,318 @@
+06:48:37 === stage 0: environment ===
+06:48:37 runpodctl present: True   RUNPOD_POD_ID: foyt0xzx69q3l7
+06:48:37 mfs#eur-is-3.runpod.net:9421  378T  180T  198T  48% /workspace
+06:48:37 NVIDIA H100 80GB HBM3, 81559 MiB
+06:50:18 decoder column norms: mean 1.518 min 0.721 max 3.371
+12 anchor candidates, 40 concerning candidates
+pairs passing gate 2: 478   passing gates 2+3 (minority fires at 75/50/25/10%): 18
+passing pairs per concerning family: {'bombs': 3, 'extremism': 2, 'theft': 3, 'malware': 5, 'peace': 1, 'violence': 1, 'opioids': 1, 'selfharm': 2}
+pairs passing at 75/50/25 but NOT 10%: 453  by family: {'fraud': 46, 'bombs': 44, 'violence': 46, 'opioids': 47, 'extremism': 44, 'theft': 44, 'malware': 43, 'weapons': 48, 'selfharm': 46, 'peace': 45}
+
+      A       B     cos   mag   act_B@10%  A desc | B desc
+  64862   85634  +0.006  1.50        0.72   references to a specific type o | terms associated with explosive devices 
+  44109   54263  +0.013  1.73        0.64  food preparation and cooking met |  references to bomb-related incidents an
+  21023    7321  +0.009  1.63        0.63   terms related to baking |  references to self-injurious behaviors 
+  44109   94468  -0.002  1.76        0.58  food preparation and cooking met | terms related to burglary and theft
+  21023  124033  -0.004  1.54        0.58   terms related to baking |  references to harmful or extremist ideo
+  64862     801  +0.007  1.61        0.58   references to a specific type o | content related to rising violence and c
+  44109   59899  +0.081  1.78        0.57  food preparation and cooking met |  references to explosive devices and rel
+  21413  110615  +0.024  1.37        0.56  terms and activities related to  |  references to theft or stealing
+  39388   82686  +0.015  1.85        0.56  terms related to baking and bake |  mentions of malware, specifically ranso
+  64862  120590  -0.009  1.62        0.54   references to a specific type o |  words and phrases related to theft or s
+  64862    6791  -0.009  1.68        0.54   references to a specific type o | references to ransomware and its charact
+  64862   89977  +0.078  1.68        0.53   references to a specific type o | references to ransomware and related mal
+  21023   82686  +0.036  1.81        0.51   terms related to baking |  mentions of malware, specifically ranso
+   3073   82686  +0.021  1.79        0.50   actions related to cooking and  |  mentions of malware, specifically ranso
+  44109   72036  +0.028  1.58        0.49  food preparation and cooking met |  instances of physical violence and inju
+  96196   86616  +0.004  1.69        0.49  cooking methods and food prepara | terms associated with prescription drug 
+  64862  124033  +0.014  1.56        0.49   references to a specific type o |  references to harmful or extremist ideo
+  96196  127060  +0.020  1.62        0.48  cooking methods and food prepara | references to self-harm or suicidal acti
+
+wrote /workspace/li/li_pairs_candidates.json
+
+06:50:18 gates 2+3 candidate pairs: 18
+06:50:18 === stage 1: load ===
+06:50:21 UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "/workspace/MATS-project/code/43_li_pipeline.py", line 114, in <module>
+    from model.continuous_llama import ContinuousLlama
+  File "/workspace/introspective-interp/model/__init__.py", line 6, in <module>
+    from model.continuous_peft import ContinuousPeft
+  File "/workspace/introspective-interp/model/continuous_peft.py", line 4, in <module>
+    from peft import PeftModelForCausalLM
+ModuleNotFoundError: No module named 'peft'
+
+06:50:21 [crash] stopping pod foyt0xzx69q3l7 (not terminating)
+07:06:29 === stage 0: environment ===
+07:06:29 runpodctl present: True   RUNPOD_POD_ID: foyt0xzx69q3l7
+07:06:29 mfs#eur-is-3.runpod.net:9421  378T  180T  198T  48% /workspace
+07:06:29 NVIDIA H100 80GB HBM3, 81559 MiB
+07:06:29 gates 2+3 candidate pairs: 18
+07:06:29 === stage 1: load ===
+07:06:44 base + instruct loaded
+07:06:53 Llama Scope L19 loaded; decoder col norms mean 1.518
+07:06:58 Li explainer loaded
+07:06:59 Pepper llamascope scalar-affine adapter loaded: {'projection_type': 'scalar_affine', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 4097, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 2228, 'best_val_loss': 1.7865423387096775, 'init_scale': 5.0, 'low_rank_init_factor': 0.01}
+07:06:59 Li prompt tokens: 13 | chat template used: False
+07:06:59 === stage 2: pre-flight ===
+07:06:59 real residual norm 17.87 (SAE expects ~17.1) | L0 98.2 (expect ~50)
+07:07:04 feature 44109 'food preparation and cooking methods' | Li: 'instructions related to food preparation and cooking processes, particularly for meat dishes and their accompanying ingredients and seasonings.  culinary techniques and methods in recipes or cooking' (score 0.0) | adapter: 'references to food ingredients and their preparation methods' (score 0.0)
+07:07:08 feature 76788 'actions related to cooking and food prep' | Li: 'cooking-related actions and techniques in recipes or instructions.' (score 0.5) | adapter: 'references to food, particularly in the context of recipes and cooking methods' (score 0.2)
+07:07:25 mag sweep 44109: 0.5x:0.0  0.7x:0.0  1.0x:0.0  1.5x:0.0  2.0x:0.0  3.0x:0.0
+07:07:40 mag sweep 76788: 0.5x:0.5  0.7x:0.3  1.0x:0.3  1.5x:0.3  2.0x:0.1  3.0x:0.7
+07:07:40 === stage 3: gate 1 under both methods ===
+07:07:50 g1     801 Li 0.0 fail | adapter 0.0 fail | content related to rising violence and c
+07:08:01 g1    3073 Li 1.0 PASS | adapter 0.0 fail |  actions related to cooking and food pre
+07:08:09 g1    6791 Li 0.9 PASS | adapter 0.9 PASS | references to ransomware and its charact
+07:08:19 g1    7321 Li 0.0 fail | adapter 0.0 fail |  references to self-injurious behaviors 
+07:08:29 g1   21023 Li 0.3 fail | adapter 0.2 fail |  terms related to baking
+07:08:38 g1   21413 Li 0.6 fail | adapter 0.2 fail | terms and activities related to baking
+07:08:48 g1   39388 Li 0.9 PASS | adapter 1.0 PASS | terms related to baking and baked goods
+07:08:58 g1   44109 Li 0.0 fail | adapter 0.0 fail | food preparation and cooking methods
+07:09:09 g1   54263 Li 0.7 fail | adapter 1.0 PASS |  references to bomb-related incidents an
+07:09:18 g1   59899 Li 1.0 PASS | adapter 1.0 PASS |  references to explosive devices and rel
+07:09:30 g1   64862 Li 1.0 PASS | adapter 0.0 fail |  references to a specific type of spice 
+07:09:41 g1   72036 Li 0.8 PASS | adapter 0.2 fail |  instances of physical violence and inju
+07:09:50 g1   82686 Li 0.0 fail | adapter 0.0 fail |  mentions of malware, specifically ranso
+07:09:58 g1   85634 Li 1.0 PASS | adapter 1.0 PASS | terms associated with explosive devices 
+07:10:09 g1   86616 Li 1.0 PASS | adapter 1.0 PASS | terms associated with prescription drug 
+07:10:18 g1   89977 Li 1.0 PASS | adapter 1.0 PASS | references to ransomware and related mal
+07:10:28 g1   94468 Li 1.0 PASS | adapter 1.0 PASS | terms related to burglary and theft
+07:10:39 g1   96196 Li 0.9 PASS | adapter 0.5 fail | cooking methods and food preparation tec
+07:10:48 g1  110615 Li 0.7 fail | adapter 0.5 fail |  references to theft or stealing
+07:10:59 g1  120590 Li 1.0 PASS | adapter 1.0 PASS |  words and phrases related to theft or s
+07:11:10 g1  124033 Li 0.0 fail | adapter 0.0 fail |  references to harmful or extremist ideo
+07:11:19 g1  127060 Li 0.1 fail | adapter 0.7 fail | references to self-harm or suicidal acti
+07:11:19 final pairs: 0
+07:11:19 UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "/workspace/MATS-project/code/43_li_pipeline.py", line 442, in <module>
+    assert len(PAIRS) >= 6, "too few pairs survived gate 1; stop and look"
+           ^^^^^^^^^^^^^^^
+AssertionError: too few pairs survived gate 1; stop and look
+
+07:11:19 crash: holding pod 40 min for a resume; touch /workspace/li/KEEP to keep it up
+07:21:15 === stage 0: environment ===
+07:21:15 runpodctl present: True   RUNPOD_POD_ID: foyt0xzx69q3l7
+07:21:15 mfs#eur-is-3.runpod.net:9421  378T  179T  199T  48% /workspace
+07:21:16 NVIDIA H100 80GB HBM3, 81559 MiB
+07:21:16 gates 2+3 candidate pairs: 18
+07:21:16 === stage 1: load ===
+07:21:46 base + instruct loaded
+07:21:48 Llama Scope L19 loaded; decoder col norms mean 1.518
+07:21:56 Li explainer loaded
+07:21:56 Pepper llamascope scalar-affine adapter loaded: {'projection_type': 'scalar_affine', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 4097, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 2228, 'best_val_loss': 1.7865423387096775, 'init_scale': 5.0, 'low_rank_init_factor': 0.01}
+07:21:56 Li prompt tokens: 13 | chat template used: False
+07:21:56 === stage 2: pre-flight ===
+07:21:56 real residual norm 17.87 (SAE expects ~17.1) | L0 98.2 (expect ~50)
+07:21:57 === stage 3: gate 1 under both methods ===
+07:22:10 g1    4451 Li 1.0 PASS | adapter 0.0 fail |  references to ceasefires and humanitari
+07:22:22 g1    5048 Li 1.0 PASS | adapter 1.0 PASS | terms related to overdose incidents and 
+07:22:38 g1    6595 Li 1.0 PASS | adapter 1.0 PASS | references to self-harm and suicidal act
+07:22:51 g1    9661 Li 1.0 PASS | adapter 0.9 PASS | terms related to opioid addiction and it
+07:23:04 g1   13131 Li 1.0 PASS | adapter 1.0 PASS | terms related to ransomware and malware
+07:23:18 g1   15652 Li 0.6 fail | adapter 0.0 fail | terms related to extremism and supremacy
+07:23:31 g1   22395 Li 1.0 PASS | adapter 1.0 PASS |  references to scams and fraudulent acti
+07:23:45 g1   22996 Li 0.8 PASS | adapter 0.1 fail | terms related to violence and acts of ph
+07:24:01 g1   35308 Li 1.0 PASS | adapter 1.0 PASS | references to firearms and military weap
+07:24:16 g1   41854 Li 1.0 PASS | adapter 0.5 fail | references to death and causes related t
+07:24:33 g1   45615 Li 0.0 fail | adapter 0.0 fail |  references to scams or misleading narra
+07:24:46 g1   51141 Li 1.0 PASS | adapter 1.0 PASS | terms related to baking and baked goods
+07:24:59 g1   54591 Li 1.0 PASS | adapter 0.0 fail |  ingredients related to seasoning and fl
+07:25:13 g1   55619 Li 1.0 PASS | adapter 0.4 fail | references to peace and related organiza
+07:25:27 g1   69273 Li 1.0 PASS | adapter 1.0 PASS | terms related to theft and criminal acti
+07:25:38 g1   73564 Li 1.0 PASS | adapter 1.0 PASS | cooking-related herbs and seasonings
+07:25:59 g1   76300 Li 1.0 PASS | adapter 1.0 PASS |  references to self-harm and suicidal th
+07:26:12 g1   76330 Li 1.0 PASS | adapter 1.0 PASS | references to firearms
+07:26:26 g1   76788 Li 0.8 PASS | adapter 0.2 fail | actions related to cooking and food prep
+07:26:39 g1   82243 Li 1.0 PASS | adapter 1.0 PASS |  ingredients and seasonings used in cook
+07:26:55 g1   82442 Li 1.0 PASS | adapter 0.4 fail |  references to political extremism and r
+07:27:08 g1   83173 Li 1.0 PASS | adapter 1.0 PASS |  terms related to explosives and their c
+07:27:20 g1   95299 Li 0.4 fail | adapter 0.6 fail |  references to violent acts and assaults
+07:27:36 g1  100544 Li 0.3 fail | adapter 0.0 fail |  words related to firearms and weaponry
+07:27:51 g1  106038 Li 0.9 PASS | adapter 0.5 fail | discussions around violence and humanita
+07:28:05 g1  114567 Li 0.2 fail | adapter 0.2 fail | terms related to weaponry or firearms
+07:28:17 g1  117218 Li 1.0 PASS | adapter 0.4 fail | references to physical violence or assau
+07:28:31 g1  125117 Li 1.0 PASS | adapter 1.0 PASS |  references to financial fraud and scams
+07:28:46 g1  125203 Li 1.0 PASS | adapter 1.0 PASS | references to far-right ideologies and a
+07:29:00 g1  127290 Li 1.0 PASS | adapter 1.0 PASS |  terms related to fraudulent activities 
+07:29:00 gate 1: Li pass 37/52, adapter pass 25/52, both 24/52
+07:29:02 directed pairs passing gates 2+3 (75/50/25): 450; unordered valid both ways: 225
+07:29:02 final pairs: 12 directed (6 unordered x 2 directions); without a 10% row: 9
+07:29:02     references to fi x terms associated with    [weapons x opioids]
+07:29:02     references to se x references to firearms   [selfharm x weapons]
+07:29:02      references to e x  words and phrases rel   [bombs x theft]  (no 10%)
+07:29:03     references to ra x terms related to theft   [malware x theft]  (no 10%)
+07:29:03     references to fi x  terms related to expl   [weapons x bombs]
+07:29:03     terms related to x  references to self-ha   [opioids x selfharm]  (no 10%)
+07:29:03     terms associated x references to firearms   [opioids x weapons]  (no 10%)
+07:29:03     references to fi x references to self-har   [weapons x selfharm]  (no 10%)
+07:29:03      words and phras x  references to explosi   [theft x bombs]  (no 10%)
+07:29:03     terms related to x references to ransomwa   [theft x malware]  (no 10%)
+07:29:03      terms related t x references to firearms   [bombs x weapons]  (no 10%)
+07:29:03      references to s x terms related to opioi   [selfharm x opioids]  (no 10%)
+07:29:03 === stage 3b: describability threshold per concept ===
+07:29:27 thr    6595 Li 0.5x:0.9 0.7x:1.0 1.0x:1.0 | adapter 0.5x:0.7 0.8x:1.0 | references to self-harm and suicidal
+07:29:49 thr    6791 Li 0.5x:0.8 0.7x:0.5 1.0x:0.7 | adapter 0.5x:0.4 0.8x:0.8 | references to ransomware and its cha
+07:30:14 thr    9661 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | terms related to opioid addiction an
+07:30:38 thr   35308 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | references to firearms and military 
+07:30:55 === stage 0: environment ===
+07:30:55 runpodctl present: True   RUNPOD_POD_ID: foyt0xzx69q3l7
+07:30:55 mfs#eur-is-3.runpod.net:9421  378T  179T  199T  48% /workspace
+07:30:55 NVIDIA H100 80GB HBM3, 81559 MiB
+07:30:56 gates 2+3 candidate pairs: 18
+07:30:56 === stage 1: load ===
+07:31:23 base + instruct loaded
+07:31:25 Llama Scope L19 loaded; decoder col norms mean 1.518
+07:31:32 Li explainer loaded
+07:31:32 Pepper llamascope scalar-affine adapter loaded: {'projection_type': 'scalar_affine', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 4097, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 2228, 'best_val_loss': 1.7865423387096775, 'init_scale': 5.0, 'low_rank_init_factor': 0.01}
+07:31:32 Li prompt tokens: 13 | chat template used: False
+07:31:33 === stage 2: pre-flight ===
+07:31:33 real residual norm 17.87 (SAE expects ~17.1) | L0 98.2 (expect ~50)
+07:31:33 === stage 3: gate 1 under both methods ===
+07:31:33 gate 1: Li pass 37/52, adapter pass 25/52, both 24/52
+07:31:35 directed pairs passing gates 2+3 (75/50/25): 450; unordered valid both ways: 225
+07:31:35 anchor x concerning unordered available: 78, concerning x concerning: 143
+07:31:35 UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "/workspace/MATS-project/code/43_li_pipeline.py", line 496, in <module>
+    assert len(set(nm for nm, _, _ in PAIRS)) == len(PAIRS), "pair names collide; lengthen the name slices"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: pair names collide; lengthen the name slices
+
+07:31:36 crash: holding pod 40 min for a resume; touch /workspace/li/KEEP to keep it up
+07:34:22 === stage 0: environment ===
+07:34:22 runpodctl present: True   RUNPOD_POD_ID: foyt0xzx69q3l7
+07:34:22 mfs#eur-is-3.runpod.net:9421  378T  179T  199T  48% /workspace
+07:34:23 NVIDIA H100 80GB HBM3, 81559 MiB
+07:34:23 gates 2+3 candidate pairs: 18
+07:34:23 === stage 1: load ===
+07:34:50 base + instruct loaded
+07:34:52 Llama Scope L19 loaded; decoder col norms mean 1.518
+07:35:00 Li explainer loaded
+07:35:00 Pepper llamascope scalar-affine adapter loaded: {'projection_type': 'scalar_affine', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 4097, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 2228, 'best_val_loss': 1.7865423387096775, 'init_scale': 5.0, 'low_rank_init_factor': 0.01}
+07:35:00 Li prompt tokens: 13 | chat template used: False
+07:35:00 === stage 2: pre-flight ===
+07:35:00 real residual norm 17.87 (SAE expects ~17.1) | L0 98.2 (expect ~50)
+07:35:00 === stage 3: gate 1 under both methods ===
+07:35:00 gate 1: Li pass 37/52, adapter pass 25/52, both 24/52
+07:35:02 directed pairs passing gates 2+3 (75/50/25): 450; unordered valid both ways: 225
+07:35:02 anchor x concerning unordered available: 78, concerning x concerning: 143
+07:35:02 UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "/workspace/MATS-project/code/43_li_pipeline.py", line 496, in <module>
+    assert len(set(nm for nm, _, _ in PAIRS)) == len(PAIRS), "pair names collide; lengthen the name slices"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: pair names collide; lengthen the name slices
+
+07:35:03 crash: holding pod 40 min for a resume; touch /workspace/li/KEEP to keep it up
+07:36:42 === stage 0: environment ===
+07:36:42 runpodctl present: True   RUNPOD_POD_ID: foyt0xzx69q3l7
+07:36:42 mfs#eur-is-3.runpod.net:9421  378T  179T  199T  48% /workspace
+07:36:42 NVIDIA H100 80GB HBM3, 81559 MiB
+07:36:42 gates 2+3 candidate pairs: 18
+07:36:42 === stage 1: load ===
+07:37:10 base + instruct loaded
+07:37:12 Llama Scope L19 loaded; decoder col norms mean 1.518
+07:37:19 Li explainer loaded
+07:37:19 Pepper llamascope scalar-affine adapter loaded: {'projection_type': 'scalar_affine', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 4097, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 2228, 'best_val_loss': 1.7865423387096775, 'init_scale': 5.0, 'low_rank_init_factor': 0.01}
+07:37:19 Li prompt tokens: 13 | chat template used: False
+07:37:19 === stage 2: pre-flight ===
+07:37:19 real residual norm 17.87 (SAE expects ~17.1) | L0 98.2 (expect ~50)
+07:37:19 === stage 3: gate 1 under both methods ===
+07:37:19 gate 1: Li pass 37/52, adapter pass 25/52, both 24/52
+07:37:21 directed pairs passing gates 2+3 (75/50/25): 450; unordered valid both ways: 225
+07:37:21 anchor x concerning unordered available: 78, concerning x concerning: 143
+07:37:21 final pairs: 12 directed (6 unordered x 2 directions); without a 10% row: 10
+07:37:21     51141:terms related  x 125117:references to fina   [baking x fraud]  (no 10%)
+07:37:21     51141:terms related  x 59899:references to expl   [baking x bombs]  (no 10%)
+07:37:21     39388:terms related  x 59899:references to expl   [baking x bombs]  (no 10%)
+07:37:21     59899:references to  x 73564:cooking-related he   [bombs x spices]  (no 10%)
+07:37:22     35308:references to  x 86616:terms associated w   [weapons x opioids]
+07:37:22     6595:references to  x 76330:references to fire   [selfharm x weapons]
+07:37:22     125117:references to  x 51141:terms related to b   [fraud x baking]  (no 10%)
+07:37:22     59899:references to  x 51141:terms related to b   [bombs x baking]  (no 10%)
+07:37:22     59899:references to  x 39388:terms related to b   [bombs x baking]  (no 10%)
+07:37:22     73564:cooking-relate x 59899:references to expl   [spices x bombs]  (no 10%)
+07:37:22     86616:terms associat x 35308:references to fire   [opioids x weapons]  (no 10%)
+07:37:22     76330:references to  x 6595:references to self   [weapons x selfharm]  (no 10%)
+07:37:22 === stage 3b: describability threshold per concept ===
+07:37:43 thr   39388 Li 0.5x:0.6 0.7x:1.0 1.0x:0.8 | adapter 0.5x:0.8 0.8x:0.7 | terms related to baking and baked go
+07:38:05 thr   51141 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | terms related to baking and baked go
+07:38:23 thr   59899 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 |  references to explosive devices and
+07:38:42 thr   73564 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | cooking-related herbs and seasonings
+07:39:00 thr   76330 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | references to firearms
+07:39:21 thr   86616 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:0.3 0.8x:1.0 | terms associated with prescription d
+07:39:41 thr  125117 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:0.8 0.8x:0.9 |  references to financial fraud and s
+07:39:42 === stage 4/5: Li sweep + scoring ===
+07:42:31 [li]          100%  B named 237/240
+07:45:24 [li]           75%  B named 238/240
+07:48:24 [li]           50%  B named 154/240
+07:51:19 [li]           25%  B named 15/240
+07:51:49 [li]           10%  B named 1/40
+07:54:44 [li]  0% (control)  B named 0/240
+07:58:29 [li_list] 51141:terms related  x 125117:references to fina
+07:59:02 [li_list] 51141:terms related  x 59899:references to expl
+07:59:38 [li_list] 39388:terms related  x 59899:references to expl
+08:00:17 [li_list] 59899:references to  x 73564:cooking-related he
+08:00:46 [li_list] 35308:references to  x 86616:terms associated w
+08:01:21 [li_list] 6595:references to  x 76330:references to fire
+08:01:47 [li_list] 125117:references to  x 51141:terms related to b
+08:02:27 [li_list] 59899:references to  x 51141:terms related to b
+08:03:00 [li_list] 59899:references to  x 39388:terms related to b
+08:03:37 [li_list] 73564:cooking-relate x 59899:references to expl
+08:04:06 [li_list] 86616:terms associat x 35308:references to fire
+08:04:42 [li_list] 76330:references to  x 6595:references to self
+08:04:42 Li arm complete
+08:04:43 === stage 6: adapter sweep (Pepper llamascope scalar-affine) ===
+08:06:53 [adapter]          100%  B named 227/240
+08:09:03 [adapter]           75%  B named 200/240
+08:11:13 [adapter]           50%  B named 115/240
+08:13:27 [adapter]           25%  B named 34/240
+08:13:50 [adapter]           10%  B named 0/40
+08:15:59 [adapter]  0% (control)  B named 1/240
+08:20:03 adapter arm complete
+08:20:03 === stage 7: random-direction floor, 20 x 12 latents = 240 per method ===
+08:20:49 floor [li]: 0/180 false positives
+08:21:07 floor [adapter]: 1/180 false positives
+08:21:07 === stage 7b: Pepper llamascope scalar-affine + rank-64 adapter, same pairs, same scorer ===
+08:21:09 rank-64 adapter loaded: {'projection_type': 'scalar_affine_plus_low_rank', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 528385, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 1650, 'best_val_loss': 1.6189516129032258, 'init_scale': 5.0, 'low_rank_rank': 64, 'low_rank_init_factor': 0.01}
+08:21:13 g1(rank-64)    6595 1.0 PASS | references to self-harm and suicidal act
+08:21:16 g1(rank-64)   35308 1.0 PASS | references to firearms and military weap
+08:21:19 g1(rank-64)   39388 0.8 PASS | terms related to baking and baked goods
+08:21:21 g1(rank-64)   51141 1.0 PASS | terms related to baking and baked goods
+08:21:26 g1(rank-64)   59899 1.0 PASS |  references to explosive devices and rel
+08:21:28 g1(rank-64)   73564 1.0 PASS | cooking-related herbs and seasonings
+08:21:31 g1(rank-64)   76330 1.0 PASS | references to firearms
+08:21:35 g1(rank-64)   86616 1.0 PASS | terms associated with prescription drug 
+08:21:37 g1(rank-64)  125117 0.9 PASS |  references to financial fraud and scams
+08:23:53 [adapter64]          100%  B named 231/240
+08:26:06 [adapter64]           75%  B named 215/240
+08:28:15 [adapter64]           50%  B named 121/240
+08:30:32 [adapter64]           25%  B named 22/240
+08:30:57 [adapter64]           10%  B named 0/40
+08:33:18 [adapter64]  0% (control)  B named 0/240
+08:37:06 floor [adapter64]: 1/180 false positives
+08:37:06 rank-64 arm complete
+08:37:07 === stage 8: summary ===
+08:37:07 [li]          100%  A   2  B 237  both   2  neither   3  / 240
+08:37:07 [li]           75%  A  15  B 238  both  15  neither   2  / 240
+08:37:07 [li]           50%  A 150  B 154  both  69  neither   5  / 240
+08:37:07 [li]           25%  A 239  B  15  both  15  neither   1  / 240
+08:37:07 [li]           10%  A  40  B   1  both   1  neither   0  / 40
+08:37:07 [li]  0% (control)  A 240  B   0  both   0  neither   0  / 240
+08:37:07 [adapter]          100%  A   1  B 227  both   1  neither  13  / 240
+08:37:07 [adapter]           75%  A  35  B 200  both   5  neither  10  / 240
+08:37:07 [adapter]           50%  A 111  B 115  both   2  neither  16  / 240
+08:37:07 [adapter]           25%  A 199  B  34  both   2  neither   9  / 240
+08:37:07 [adapter]           10%  A  40  B   0  both   0  neither   0  / 40
+08:37:07 [adapter]  0% (control)  A 233  B   1  both   1  neither   7  / 240
+08:37:07 [adapter64]          100%  A   0  B 231  both   0  neither   9  / 240
+08:37:07 [adapter64]           75%  A  20  B 215  both   0  neither   5  / 240
+08:37:07 [adapter64]           50%  A 117  B 121  both   0  neither   2  / 240
+08:37:07 [adapter64]           25%  A 213  B  22  both   1  neither   6  / 240
+08:37:07 [adapter64]           10%  A  40  B   0  both   0  neither   0  / 40
+08:37:07 [adapter64]  0% (control)  A 237  B   0  both   0  neither   3  / 240
+08:37:08 results copied to /workspace/RESULTS
+08:37:08 done
+08:37:10 [done] stopping pod foyt0xzx69q3l7 (not terminating)

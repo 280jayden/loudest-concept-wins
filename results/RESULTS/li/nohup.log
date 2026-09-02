@@ -1,0 +1,128 @@
+07:36:42 === stage 0: environment ===
+07:36:42 runpodctl present: True   RUNPOD_POD_ID: foyt0xzx69q3l7
+07:36:42 mfs#eur-is-3.runpod.net:9421  378T  179T  199T  48% /workspace
+07:36:42 NVIDIA H100 80GB HBM3, 81559 MiB
+07:36:42 gates 2+3 candidate pairs: 18
+07:36:42 === stage 1: load ===
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.58s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.54s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.48s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.10s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.26s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.65s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.63s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.55s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.16s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.32s/it]
+07:37:10 base + instruct loaded
+07:37:12 Llama Scope L19 loaded; decoder col norms mean 1.518
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.57s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.41s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.42s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.18s/it]
+07:37:19 Li explainer loaded
+Loading scalar_affine projection (dim=4096) from /root/hf_extra/models--keenanpepper--selfie-adapters-llama-3.1-8b-instruct/snapshots/8bbc50f09b24387a20620577ea12566399356039/llamascope-sae-scalar-affine.safetensors
+Created scalar_affine projection:
+  Parameters: 4,097
+  Normalize input: True
+  Initial scale: 5.0
+✓ Loaded adapter with 4,097 parameters
+07:37:19 Pepper llamascope scalar-affine adapter loaded: {'projection_type': 'scalar_affine', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 4097, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 2228, 'best_val_loss': 1.7865423387096775, 'init_scale': 5.0, 'low_rank_init_factor': 0.01}
+07:37:19 Li prompt tokens: 13 | chat template used: False
+07:37:19 === stage 2: pre-flight ===
+07:37:19 real residual norm 17.87 (SAE expects ~17.1) | L0 98.2 (expect ~50)
+07:37:19 === stage 3: gate 1 under both methods ===
+07:37:19 gate 1: Li pass 37/52, adapter pass 25/52, both 24/52
+07:37:21 directed pairs passing gates 2+3 (75/50/25): 450; unordered valid both ways: 225
+07:37:21 anchor x concerning unordered available: 78, concerning x concerning: 143
+07:37:21 final pairs: 12 directed (6 unordered x 2 directions); without a 10% row: 10
+07:37:21     51141:terms related  x 125117:references to fina   [baking x fraud]  (no 10%)
+07:37:21     51141:terms related  x 59899:references to expl   [baking x bombs]  (no 10%)
+07:37:21     39388:terms related  x 59899:references to expl   [baking x bombs]  (no 10%)
+07:37:21     59899:references to  x 73564:cooking-related he   [bombs x spices]  (no 10%)
+07:37:22     35308:references to  x 86616:terms associated w   [weapons x opioids]
+07:37:22     6595:references to  x 76330:references to fire   [selfharm x weapons]
+07:37:22     125117:references to  x 51141:terms related to b   [fraud x baking]  (no 10%)
+07:37:22     59899:references to  x 51141:terms related to b   [bombs x baking]  (no 10%)
+07:37:22     59899:references to  x 39388:terms related to b   [bombs x baking]  (no 10%)
+07:37:22     73564:cooking-relate x 59899:references to expl   [spices x bombs]  (no 10%)
+07:37:22     86616:terms associat x 35308:references to fire   [opioids x weapons]  (no 10%)
+07:37:22     76330:references to  x 6595:references to self   [weapons x selfharm]  (no 10%)
+07:37:22 === stage 3b: describability threshold per concept ===
+07:37:43 thr   39388 Li 0.5x:0.6 0.7x:1.0 1.0x:0.8 | adapter 0.5x:0.8 0.8x:0.7 | terms related to baking and baked go
+07:38:05 thr   51141 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | terms related to baking and baked go
+07:38:23 thr   59899 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 |  references to explosive devices and
+07:38:42 thr   73564 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | cooking-related herbs and seasonings
+07:39:00 thr   76330 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:1.0 0.8x:1.0 | references to firearms
+07:39:21 thr   86616 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:0.3 0.8x:1.0 | terms associated with prescription d
+07:39:41 thr  125117 Li 0.5x:1.0 0.7x:1.0 1.0x:1.0 | adapter 0.5x:0.8 0.8x:0.9 |  references to financial fraud and s
+07:39:42 === stage 4/5: Li sweep + scoring ===
+07:42:31 [li]          100%  B named 237/240
+07:45:24 [li]           75%  B named 238/240
+07:48:24 [li]           50%  B named 154/240
+07:51:19 [li]           25%  B named 15/240
+07:51:49 [li]           10%  B named 1/40
+07:54:44 [li]  0% (control)  B named 0/240
+07:58:29 [li_list] 51141:terms related  x 125117:references to fina
+07:59:02 [li_list] 51141:terms related  x 59899:references to expl
+07:59:38 [li_list] 39388:terms related  x 59899:references to expl
+08:00:17 [li_list] 59899:references to  x 73564:cooking-related he
+08:00:46 [li_list] 35308:references to  x 86616:terms associated w
+08:01:21 [li_list] 6595:references to  x 76330:references to fire
+08:01:47 [li_list] 125117:references to  x 51141:terms related to b
+08:02:27 [li_list] 59899:references to  x 51141:terms related to b
+08:03:00 [li_list] 59899:references to  x 39388:terms related to b
+08:03:37 [li_list] 73564:cooking-relate x 59899:references to expl
+08:04:06 [li_list] 86616:terms associat x 35308:references to fire
+08:04:42 [li_list] 76330:references to  x 6595:references to self
+08:04:42 Li arm complete
+08:04:43 === stage 6: adapter sweep (Pepper llamascope scalar-affine) ===
+08:06:53 [adapter]          100%  B named 227/240
+08:09:03 [adapter]           75%  B named 200/240
+08:11:13 [adapter]           50%  B named 115/240
+08:13:27 [adapter]           25%  B named 34/240
+08:13:50 [adapter]           10%  B named 0/40
+08:15:59 [adapter]  0% (control)  B named 1/240
+08:20:03 adapter arm complete
+08:20:03 === stage 7: random-direction floor, 20 x 12 latents = 240 per method ===
+08:20:49 floor [li]: 0/180 false positives
+08:21:07 floor [adapter]: 1/180 false positives
+08:21:07 === stage 7b: Pepper llamascope scalar-affine + rank-64 adapter, same pairs, same scorer ===
+Loading scalar_affine_plus_low_rank projection (dim=4096) from /root/hf_extra/models--keenanpepper--selfie-adapters-llama-3.1-8b-instruct/snapshots/8bbc50f09b24387a20620577ea12566399356039/llamascope-sae-sa-lr64.safetensors
+Created scalar_affine_plus_low_rank projection:
+  Parameters: 528,385
+  Normalize input: True
+  Initial scale: 5.0
+✓ Loaded adapter with 528,385 parameters
+08:21:09 rank-64 adapter loaded: {'projection_type': 'scalar_affine_plus_low_rank', 'model_dim': 4096, 'normalize_input': True, 'num_parameters': 528385, 'device': 'cuda', 'checkpoint_format_version': 0, 'global_step': 1650, 'best_val_loss': 1.6189516129032258, 'init_scale': 5.0, 'low_rank_rank': 64, 'low_rank_init_factor': 0.01}
+08:21:13 g1(rank-64)    6595 1.0 PASS | references to self-harm and suicidal act
+08:21:16 g1(rank-64)   35308 1.0 PASS | references to firearms and military weap
+08:21:19 g1(rank-64)   39388 0.8 PASS | terms related to baking and baked goods
+08:21:21 g1(rank-64)   51141 1.0 PASS | terms related to baking and baked goods
+08:21:26 g1(rank-64)   59899 1.0 PASS |  references to explosive devices and rel
+08:21:28 g1(rank-64)   73564 1.0 PASS | cooking-related herbs and seasonings
+08:21:31 g1(rank-64)   76330 1.0 PASS | references to firearms
+08:21:35 g1(rank-64)   86616 1.0 PASS | terms associated with prescription drug 
+08:21:37 g1(rank-64)  125117 0.9 PASS |  references to financial fraud and scams
+08:23:53 [adapter64]          100%  B named 231/240
+08:26:06 [adapter64]           75%  B named 215/240
+08:28:15 [adapter64]           50%  B named 121/240
+08:30:32 [adapter64]           25%  B named 22/240
+08:30:57 [adapter64]           10%  B named 0/40
+08:33:18 [adapter64]  0% (control)  B named 0/240
+08:37:06 floor [adapter64]: 1/180 false positives
+08:37:06 rank-64 arm complete
+08:37:07 === stage 8: summary ===
+08:37:07 [li]          100%  A   2  B 237  both   2  neither   3  / 240
+08:37:07 [li]           75%  A  15  B 238  both  15  neither   2  / 240
+08:37:07 [li]           50%  A 150  B 154  both  69  neither   5  / 240
+08:37:07 [li]           25%  A 239  B  15  both  15  neither   1  / 240
+08:37:07 [li]           10%  A  40  B   1  both   1  neither   0  / 40
+08:37:07 [li]  0% (control)  A 240  B   0  both   0  neither   0  / 240
+08:37:07 [adapter]          100%  A   1  B 227  both   1  neither  13  / 240
+08:37:07 [adapter]           75%  A  35  B 200  both   5  neither  10  / 240
+08:37:07 [adapter]           50%  A 111  B 115  both   2  neither  16  / 240
+08:37:07 [adapter]           25%  A 199  B  34  both   2  neither   9  / 240
+08:37:07 [adapter]           10%  A  40  B   0  both   0  neither   0  / 40
+08:37:07 [adapter]  0% (control)  A 233  B   1  both   1  neither   7  / 240
+08:37:07 [adapter64]          100%  A   0  B 231  both   0  neither   9  / 240
+08:37:07 [adapter64]           75%  A  20  B 215  both   0  neither   5  / 240
+08:37:07 [adapter64]           50%  A 117  B 121  both   0  neither   2  / 240
+08:37:07 [adapter64]           25%  A 213  B  22  both   1  neither   6  / 240
+08:37:07 [adapter64]           10%  A  40  B   0  both   0  neither   0  / 40
+08:37:07 [adapter64]  0% (control)  A 237  B   0  both   0  neither   3  / 240
+08:37:08 results copied to /workspace/RESULTS
+08:37:08 done
+08:37:10 [done] stopping pod foyt0xzx69q3l7 (not terminating)
+Runpod config file not found, please run `runpodctl config` to create it
+pod "foyt0xzx69q3l7" stopped

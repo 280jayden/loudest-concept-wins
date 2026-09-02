@@ -1,0 +1,1722 @@
+{
+ "pairs": [
+  {
+   "A": 51141,
+   "B": 125117,
+   "A_family": "baking",
+   "B_family": "fraud",
+   "A_desc": "terms related to baking and baked goods",
+   "B_desc": " references to financial fraud and scams",
+   "cos": 0.0033,
+   "inject_mag": 1.438,
+   "acts_A_B": {
+    "75%": [
+     1.357,
+     3.739
+    ],
+    "50%": [
+     3.202,
+     2.727
+    ],
+    "25%": [
+     4.348,
+     1.119
+    ],
+    "10%": [
+     4.567,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "51141:terms related  x 125117:references to fina"
+  },
+  {
+   "A": 51141,
+   "B": 59899,
+   "A_family": "baking",
+   "B_family": "bombs",
+   "A_desc": "terms related to baking and baked goods",
+   "B_desc": " references to explosive devices and related materials",
+   "cos": 0.0386,
+   "inject_mag": 1.522,
+   "acts_A_B": {
+    "75%": [
+     1.18,
+     3.248
+    ],
+    "50%": [
+     3.154,
+     2.425
+    ],
+    "25%": [
+     4.48,
+     1.098
+    ],
+    "10%": [
+     4.795,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "51141:terms related  x 59899:references to expl"
+  },
+  {
+   "A": 39388,
+   "B": 59899,
+   "A_family": "baking",
+   "B_family": "bombs",
+   "A_desc": "terms related to baking and baked goods",
+   "B_desc": " references to explosive devices and related materials",
+   "cos": 0.0032,
+   "inject_mag": 1.677,
+   "acts_A_B": {
+    "75%": [
+     1.088,
+     3.603
+    ],
+    "50%": [
+     2.517,
+     2.673
+    ],
+    "25%": [
+     3.402,
+     1.156
+    ],
+    "10%": [
+     3.569,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "39388:terms related  x 59899:references to expl"
+  },
+  {
+   "A": 59899,
+   "B": 73564,
+   "A_family": "bombs",
+   "B_family": "spices",
+   "A_desc": " references to explosive devices and related materials",
+   "B_desc": "cooking-related herbs and seasonings",
+   "cos": -0.0046,
+   "inject_mag": 1.609,
+   "acts_A_B": {
+    "75%": [
+     0.933,
+     3.461
+    ],
+    "50%": [
+     2.44,
+     2.509
+    ],
+    "25%": [
+     3.402,
+     1.01
+    ],
+    "10%": [
+     3.598,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "59899:references to  x 73564:cooking-related he"
+  },
+  {
+   "A": 35308,
+   "B": 86616,
+   "A_family": "weapons",
+   "B_family": "opioids",
+   "A_desc": "references to firearms and military weaponry",
+   "B_desc": "terms associated with prescription drug policies and opioid misuse",
+   "cos": 0.0588,
+   "inject_mag": 1.876,
+   "acts_A_B": {
+    "75%": [
+     1.202,
+     3.347
+    ],
+    "50%": [
+     2.653,
+     2.531
+    ],
+    "25%": [
+     3.581,
+     1.232
+    ],
+    "10%": [
+     3.78,
+     0.528
+    ]
+   },
+   "has_10pct": true,
+   "name": "35308:references to  x 86616:terms associated w"
+  },
+  {
+   "A": 6595,
+   "B": 76330,
+   "A_family": "selfharm",
+   "B_family": "weapons",
+   "A_desc": "references to self-harm and suicidal actions",
+   "B_desc": "references to firearms",
+   "cos": 0.0631,
+   "inject_mag": 1.549,
+   "acts_A_B": {
+    "75%": [
+     1.193,
+     3.423
+    ],
+    "50%": [
+     2.608,
+     2.621
+    ],
+    "25%": [
+     3.512,
+     1.303
+    ],
+    "10%": [
+     3.707,
+     0.578
+    ]
+   },
+   "has_10pct": true,
+   "name": "6595:references to  x 76330:references to fire"
+  },
+  {
+   "A": 125117,
+   "B": 51141,
+   "A_family": "fraud",
+   "B_family": "baking",
+   "A_desc": " references to financial fraud and scams",
+   "B_desc": "terms related to baking and baked goods",
+   "cos": 0.0033,
+   "inject_mag": 1.438,
+   "acts_A_B": {
+    "75%": [
+     1.119,
+     4.348
+    ],
+    "50%": [
+     2.727,
+     3.202
+    ],
+    "25%": [
+     3.739,
+     1.357
+    ],
+    "10%": [
+     3.938,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "125117:references to  x 51141:terms related to b"
+  },
+  {
+   "A": 59899,
+   "B": 51141,
+   "A_family": "bombs",
+   "B_family": "baking",
+   "A_desc": " references to explosive devices and related materials",
+   "B_desc": "terms related to baking and baked goods",
+   "cos": 0.0386,
+   "inject_mag": 1.522,
+   "acts_A_B": {
+    "75%": [
+     1.098,
+     4.48
+    ],
+    "50%": [
+     2.425,
+     3.154
+    ],
+    "25%": [
+     3.248,
+     1.18
+    ],
+    "10%": [
+     3.408,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "59899:references to  x 51141:terms related to b"
+  },
+  {
+   "A": 59899,
+   "B": 39388,
+   "A_family": "bombs",
+   "B_family": "baking",
+   "A_desc": " references to explosive devices and related materials",
+   "B_desc": "terms related to baking and baked goods",
+   "cos": 0.0032,
+   "inject_mag": 1.677,
+   "acts_A_B": {
+    "75%": [
+     1.156,
+     3.402
+    ],
+    "50%": [
+     2.673,
+     2.517
+    ],
+    "25%": [
+     3.603,
+     1.088
+    ],
+    "10%": [
+     3.773,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "59899:references to  x 39388:terms related to b"
+  },
+  {
+   "A": 73564,
+   "B": 59899,
+   "A_family": "spices",
+   "B_family": "bombs",
+   "A_desc": "cooking-related herbs and seasonings",
+   "B_desc": " references to explosive devices and related materials",
+   "cos": -0.0046,
+   "inject_mag": 1.609,
+   "acts_A_B": {
+    "75%": [
+     1.01,
+     3.402
+    ],
+    "50%": [
+     2.509,
+     2.44
+    ],
+    "25%": [
+     3.461,
+     0.933
+    ],
+    "10%": [
+     3.653,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "73564:cooking-relate x 59899:references to expl"
+  },
+  {
+   "A": 86616,
+   "B": 35308,
+   "A_family": "opioids",
+   "B_family": "weapons",
+   "A_desc": "terms associated with prescription drug policies and opioid misuse",
+   "B_desc": "references to firearms and military weaponry",
+   "cos": 0.0588,
+   "inject_mag": 1.876,
+   "acts_A_B": {
+    "75%": [
+     1.232,
+     3.581
+    ],
+    "50%": [
+     2.531,
+     2.653
+    ],
+    "25%": [
+     3.347,
+     1.202
+    ],
+    "10%": [
+     3.514,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "86616:terms associat x 35308:references to fire"
+  },
+  {
+   "A": 76330,
+   "B": 6595,
+   "A_family": "weapons",
+   "B_family": "selfharm",
+   "A_desc": "references to firearms",
+   "B_desc": "references to self-harm and suicidal actions",
+   "cos": 0.0631,
+   "inject_mag": 1.549,
+   "acts_A_B": {
+    "75%": [
+     1.303,
+     3.512
+    ],
+    "50%": [
+     2.621,
+     2.608
+    ],
+    "25%": [
+     3.423,
+     1.193
+    ],
+    "10%": [
+     3.574,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "76330:references to  x 6595:references to self"
+  }
+ ],
+ "gate1": {
+  "n": 52,
+  "li_pass": 37,
+  "adapter_pass": 25,
+  "both": 24
+ },
+ "gate1_64": {
+  "n": 9,
+  "pass": 9
+ },
+ "summary": {
+  "li": {
+   "100%": {
+    "A": 2,
+    "B": 237,
+    "both": 2,
+    "neither": 3,
+    "n": 240
+   },
+   "75%": {
+    "A": 15,
+    "B": 238,
+    "both": 15,
+    "neither": 2,
+    "n": 240
+   },
+   "50%": {
+    "A": 150,
+    "B": 154,
+    "both": 69,
+    "neither": 5,
+    "n": 240
+   },
+   "25%": {
+    "A": 239,
+    "B": 15,
+    "both": 15,
+    "neither": 1,
+    "n": 240
+   },
+   "10%": {
+    "A": 40,
+    "B": 1,
+    "both": 1,
+    "neither": 0,
+    "n": 40
+   },
+   "0% (control)": {
+    "A": 240,
+    "B": 0,
+    "both": 0,
+    "neither": 0,
+    "n": 240
+   },
+   "100%_greedy": {
+    "A": 0,
+    "B": 12,
+    "both": 0,
+    "neither": 0,
+    "n": 12
+   },
+   "75%_greedy": {
+    "A": 1,
+    "B": 12,
+    "both": 1,
+    "neither": 0,
+    "n": 12
+   },
+   "50%_greedy": {
+    "A": 8,
+    "B": 7,
+    "both": 3,
+    "neither": 0,
+    "n": 12
+   },
+   "25%_greedy": {
+    "A": 12,
+    "B": 0,
+    "both": 0,
+    "neither": 0,
+    "n": 12
+   },
+   "10%_greedy": {
+    "A": 2,
+    "B": 0,
+    "both": 0,
+    "neither": 0,
+    "n": 2
+   },
+   "0% (control)_greedy": {
+    "A": 12,
+    "B": 0,
+    "both": 0,
+    "neither": 0,
+    "n": 12
+   },
+   "50%_list": {
+    "A": 56,
+    "B": 62,
+    "both": 22,
+    "neither": 0,
+    "n": 96
+   },
+   "25%_list": {
+    "A": 96,
+    "B": 10,
+    "both": 10,
+    "neither": 0,
+    "n": 96
+   }
+  },
+  "adapter": {
+   "100%": {
+    "A": 1,
+    "B": 227,
+    "both": 1,
+    "neither": 13,
+    "n": 240
+   },
+   "75%": {
+    "A": 35,
+    "B": 200,
+    "both": 5,
+    "neither": 10,
+    "n": 240
+   },
+   "50%": {
+    "A": 111,
+    "B": 115,
+    "both": 2,
+    "neither": 16,
+    "n": 240
+   },
+   "25%": {
+    "A": 199,
+    "B": 34,
+    "both": 2,
+    "neither": 9,
+    "n": 240
+   },
+   "10%": {
+    "A": 40,
+    "B": 0,
+    "both": 0,
+    "neither": 0,
+    "n": 40
+   },
+   "0% (control)": {
+    "A": 233,
+    "B": 1,
+    "both": 1,
+    "neither": 7,
+    "n": 240
+   },
+   "50%_list": {
+    "A": 49,
+    "B": 51,
+    "both": 6,
+    "neither": 2,
+    "n": 96
+   },
+   "25%_list": {
+    "A": 83,
+    "B": 17,
+    "both": 7,
+    "neither": 3,
+    "n": 96
+   }
+  },
+  "adapter64": {
+   "100%": {
+    "A": 0,
+    "B": 231,
+    "both": 0,
+    "neither": 9,
+    "n": 240
+   },
+   "75%": {
+    "A": 20,
+    "B": 215,
+    "both": 0,
+    "neither": 5,
+    "n": 240
+   },
+   "50%": {
+    "A": 117,
+    "B": 121,
+    "both": 0,
+    "neither": 2,
+    "n": 240
+   },
+   "25%": {
+    "A": 213,
+    "B": 22,
+    "both": 1,
+    "neither": 6,
+    "n": 240
+   },
+   "10%": {
+    "A": 40,
+    "B": 0,
+    "both": 0,
+    "neither": 0,
+    "n": 40
+   },
+   "0% (control)": {
+    "A": 237,
+    "B": 0,
+    "both": 0,
+    "neither": 3,
+    "n": 240
+   },
+   "50%_list": {
+    "A": 60,
+    "B": 61,
+    "both": 25,
+    "neither": 0,
+    "n": 96
+   },
+   "25%_list": {
+    "A": 87,
+    "B": 14,
+    "both": 6,
+    "neither": 1,
+    "n": 96
+   }
+  }
+ },
+ "per_pair": {
+  "li": {
+   "51141:terms related  x 125117:references to fina": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "51141:terms related  x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 3,
+     "B": 20,
+     "both": 3,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "39388:terms related  x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 19,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 20,
+     "both": 20,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 73564:cooking-related he": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 19,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "35308:references to  x 86616:terms associated w": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 2,
+     "both": 2,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 20,
+     "B": 1,
+     "both": 1,
+     "neither": 0,
+     "n": 20
+    }
+   },
+   "6595:references to  x 76330:references to fire": {
+    "75%": {
+     "A": 1,
+     "B": 20,
+     "both": 1,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 10,
+     "B": 19,
+     "both": 10,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 13,
+     "both": 13,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    }
+   },
+   "125117:references to  x 51141:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 51141:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 19,
+     "B": 2,
+     "both": 2,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 39388:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 19,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 20,
+     "both": 20,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "73564:cooking-relate x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "86616:terms associat x 35308:references to fire": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "76330:references to  x 6595:references to self": {
+    "75%": {
+     "A": 14,
+     "B": 20,
+     "both": 14,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 18,
+     "B": 12,
+     "both": 12,
+     "neither": 2,
+     "n": 20
+    },
+    "25%": {
+     "A": 19,
+     "B": 2,
+     "both": 2,
+     "neither": 1,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   }
+  },
+  "adapter": {
+   "51141:terms related  x 125117:references to fina": {
+    "75%": {
+     "A": 0,
+     "B": 16,
+     "both": 0,
+     "neither": 4,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "51141:terms related  x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 18,
+     "B": 0,
+     "both": 0,
+     "neither": 2,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "39388:terms related  x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 11,
+     "B": 7,
+     "both": 1,
+     "neither": 3,
+     "n": 20
+    },
+    "25%": {
+     "A": 19,
+     "B": 0,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 73564:cooking-related he": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 5,
+     "B": 12,
+     "both": 0,
+     "neither": 3,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "35308:references to  x 86616:terms associated w": {
+    "75%": {
+     "A": 16,
+     "B": 0,
+     "both": 0,
+     "neither": 4,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    }
+   },
+   "6595:references to  x 76330:references to fire": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 4,
+     "B": 17,
+     "both": 2,
+     "neither": 1,
+     "n": 20
+    },
+    "10%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    }
+   },
+   "125117:references to  x 51141:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 19,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 16,
+     "B": 0,
+     "both": 0,
+     "neither": 4,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 51141:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 2,
+     "B": 18,
+     "both": 1,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 39388:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 18,
+     "both": 0,
+     "neither": 2,
+     "n": 20
+    },
+    "50%": {
+     "A": 3,
+     "B": 14,
+     "both": 0,
+     "neither": 3,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "73564:cooking-relate x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 13,
+     "B": 5,
+     "both": 0,
+     "neither": 2,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "86616:terms associat x 35308:references to fire": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 1,
+     "B": 17,
+     "both": 0,
+     "neither": 2,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "76330:references to  x 6595:references to self": {
+    "75%": {
+     "A": 19,
+     "B": 6,
+     "both": 5,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 19,
+     "B": 0,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 19,
+     "B": 0,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   }
+  },
+  "adapter64": {
+   "51141:terms related  x 125117:references to fina": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "51141:terms related  x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 11,
+     "B": 9,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "39388:terms related  x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 17,
+     "B": 0,
+     "both": 0,
+     "neither": 3,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 73564:cooking-related he": {
+    "75%": {
+     "A": 0,
+     "B": 18,
+     "both": 0,
+     "neither": 2,
+     "n": 20
+    },
+    "50%": {
+     "A": 18,
+     "B": 2,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "35308:references to  x 86616:terms associated w": {
+    "75%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    }
+   },
+   "6595:references to  x 76330:references to fire": {
+    "75%": {
+     "A": 0,
+     "B": 17,
+     "both": 0,
+     "neither": 3,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 19,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    }
+   },
+   "125117:references to  x 51141:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 18,
+     "B": 0,
+     "both": 0,
+     "neither": 2,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 51141:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 9,
+     "B": 11,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "59899:references to  x 39388:terms related to b": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "73564:cooking-relate x 59899:references to expl": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 18,
+     "B": 1,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "86616:terms associat x 35308:references to fire": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "25%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   },
+   "76330:references to  x 6595:references to self": {
+    "75%": {
+     "A": 0,
+     "B": 20,
+     "both": 0,
+     "neither": 0,
+     "n": 20
+    },
+    "50%": {
+     "A": 19,
+     "B": 0,
+     "both": 0,
+     "neither": 1,
+     "n": 20
+    },
+    "25%": {
+     "A": 20,
+     "B": 1,
+     "both": 1,
+     "neither": 0,
+     "n": 20
+    },
+    "10%": {
+     "A": 0,
+     "B": 0,
+     "both": 0,
+     "neither": 0,
+     "n": 0
+    }
+   }
+  }
+ },
+ "h6": {
+  "li": {
+   "agree": 2,
+   "decided": 2
+  },
+  "adapter": {
+   "agree": 6,
+   "decided": 8
+  },
+  "adapter64": {
+   "agree": 8,
+   "decided": 8
+  }
+ },
+ "floors": {
+  "li": {
+   "fp": 0,
+   "n": 180
+  },
+  "adapter": {
+   "fp": 1,
+   "n": 180
+  },
+  "adapter64": {
+   "fp": 1,
+   "n": 180
+  }
+ },
+ "h7": {
+  "li": {
+   "consistent": 5,
+   "decided": 5
+  },
+  "adapter": {
+   "consistent": 6,
+   "decided": 6
+  },
+  "adapter64": {
+   "consistent": 6,
+   "decided": 6
+  }
+ }
+}

@@ -1,0 +1,10 @@
+== repos ==
+== python deps ==
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+transformer-lens 3.2.1 requires transformers>=4.56, but you have transformers 4.55.0 which is incompatible.[0m[31m
+[0mtransformers 4.55.0 | torch 2.8.0+cu128 | cuda True
+== hf login + downloads (~50 GB) ==
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+ok meta-llama/Llama-3.1-8B
+ok meta-llama/Meta-Llama-3.1-8B-Instruct
+ok Transluce/features_explain_llama3.1_8b_llama3.1_8b

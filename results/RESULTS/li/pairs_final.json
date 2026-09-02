@@ -1,0 +1,391 @@
+{
+ "pairs": [
+  {
+   "A": 51141,
+   "B": 125117,
+   "A_family": "baking",
+   "B_family": "fraud",
+   "A_desc": "terms related to baking and baked goods",
+   "B_desc": " references to financial fraud and scams",
+   "cos": 0.0033,
+   "inject_mag": 1.438,
+   "acts_A_B": {
+    "75%": [
+     1.357,
+     3.739
+    ],
+    "50%": [
+     3.202,
+     2.727
+    ],
+    "25%": [
+     4.348,
+     1.119
+    ],
+    "10%": [
+     4.567,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "51141:terms related  x 125117:references to fina"
+  },
+  {
+   "A": 51141,
+   "B": 59899,
+   "A_family": "baking",
+   "B_family": "bombs",
+   "A_desc": "terms related to baking and baked goods",
+   "B_desc": " references to explosive devices and related materials",
+   "cos": 0.0386,
+   "inject_mag": 1.522,
+   "acts_A_B": {
+    "75%": [
+     1.18,
+     3.248
+    ],
+    "50%": [
+     3.154,
+     2.425
+    ],
+    "25%": [
+     4.48,
+     1.098
+    ],
+    "10%": [
+     4.795,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "51141:terms related  x 59899:references to expl"
+  },
+  {
+   "A": 39388,
+   "B": 59899,
+   "A_family": "baking",
+   "B_family": "bombs",
+   "A_desc": "terms related to baking and baked goods",
+   "B_desc": " references to explosive devices and related materials",
+   "cos": 0.0032,
+   "inject_mag": 1.677,
+   "acts_A_B": {
+    "75%": [
+     1.088,
+     3.603
+    ],
+    "50%": [
+     2.517,
+     2.673
+    ],
+    "25%": [
+     3.402,
+     1.156
+    ],
+    "10%": [
+     3.569,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "39388:terms related  x 59899:references to expl"
+  },
+  {
+   "A": 59899,
+   "B": 73564,
+   "A_family": "bombs",
+   "B_family": "spices",
+   "A_desc": " references to explosive devices and related materials",
+   "B_desc": "cooking-related herbs and seasonings",
+   "cos": -0.0046,
+   "inject_mag": 1.609,
+   "acts_A_B": {
+    "75%": [
+     0.933,
+     3.461
+    ],
+    "50%": [
+     2.44,
+     2.509
+    ],
+    "25%": [
+     3.402,
+     1.01
+    ],
+    "10%": [
+     3.598,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "59899:references to  x 73564:cooking-related he"
+  },
+  {
+   "A": 35308,
+   "B": 86616,
+   "A_family": "weapons",
+   "B_family": "opioids",
+   "A_desc": "references to firearms and military weaponry",
+   "B_desc": "terms associated with prescription drug policies and opioid misuse",
+   "cos": 0.0588,
+   "inject_mag": 1.876,
+   "acts_A_B": {
+    "75%": [
+     1.202,
+     3.347
+    ],
+    "50%": [
+     2.653,
+     2.531
+    ],
+    "25%": [
+     3.581,
+     1.232
+    ],
+    "10%": [
+     3.78,
+     0.528
+    ]
+   },
+   "has_10pct": true,
+   "name": "35308:references to  x 86616:terms associated w"
+  },
+  {
+   "A": 6595,
+   "B": 76330,
+   "A_family": "selfharm",
+   "B_family": "weapons",
+   "A_desc": "references to self-harm and suicidal actions",
+   "B_desc": "references to firearms",
+   "cos": 0.0631,
+   "inject_mag": 1.549,
+   "acts_A_B": {
+    "75%": [
+     1.193,
+     3.423
+    ],
+    "50%": [
+     2.608,
+     2.621
+    ],
+    "25%": [
+     3.512,
+     1.303
+    ],
+    "10%": [
+     3.707,
+     0.578
+    ]
+   },
+   "has_10pct": true,
+   "name": "6595:references to  x 76330:references to fire"
+  },
+  {
+   "A": 125117,
+   "B": 51141,
+   "A_family": "fraud",
+   "B_family": "baking",
+   "A_desc": " references to financial fraud and scams",
+   "B_desc": "terms related to baking and baked goods",
+   "cos": 0.0033,
+   "inject_mag": 1.438,
+   "acts_A_B": {
+    "75%": [
+     1.119,
+     4.348
+    ],
+    "50%": [
+     2.727,
+     3.202
+    ],
+    "25%": [
+     3.739,
+     1.357
+    ],
+    "10%": [
+     3.938,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "125117:references to  x 51141:terms related to b"
+  },
+  {
+   "A": 59899,
+   "B": 51141,
+   "A_family": "bombs",
+   "B_family": "baking",
+   "A_desc": " references to explosive devices and related materials",
+   "B_desc": "terms related to baking and baked goods",
+   "cos": 0.0386,
+   "inject_mag": 1.522,
+   "acts_A_B": {
+    "75%": [
+     1.098,
+     4.48
+    ],
+    "50%": [
+     2.425,
+     3.154
+    ],
+    "25%": [
+     3.248,
+     1.18
+    ],
+    "10%": [
+     3.408,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "59899:references to  x 51141:terms related to b"
+  },
+  {
+   "A": 59899,
+   "B": 39388,
+   "A_family": "bombs",
+   "B_family": "baking",
+   "A_desc": " references to explosive devices and related materials",
+   "B_desc": "terms related to baking and baked goods",
+   "cos": 0.0032,
+   "inject_mag": 1.677,
+   "acts_A_B": {
+    "75%": [
+     1.156,
+     3.402
+    ],
+    "50%": [
+     2.673,
+     2.517
+    ],
+    "25%": [
+     3.603,
+     1.088
+    ],
+    "10%": [
+     3.773,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "59899:references to  x 39388:terms related to b"
+  },
+  {
+   "A": 73564,
+   "B": 59899,
+   "A_family": "spices",
+   "B_family": "bombs",
+   "A_desc": "cooking-related herbs and seasonings",
+   "B_desc": " references to explosive devices and related materials",
+   "cos": -0.0046,
+   "inject_mag": 1.609,
+   "acts_A_B": {
+    "75%": [
+     1.01,
+     3.402
+    ],
+    "50%": [
+     2.509,
+     2.44
+    ],
+    "25%": [
+     3.461,
+     0.933
+    ],
+    "10%": [
+     3.653,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "73564:cooking-relate x 59899:references to expl"
+  },
+  {
+   "A": 86616,
+   "B": 35308,
+   "A_family": "opioids",
+   "B_family": "weapons",
+   "A_desc": "terms associated with prescription drug policies and opioid misuse",
+   "B_desc": "references to firearms and military weaponry",
+   "cos": 0.0588,
+   "inject_mag": 1.876,
+   "acts_A_B": {
+    "75%": [
+     1.232,
+     3.581
+    ],
+    "50%": [
+     2.531,
+     2.653
+    ],
+    "25%": [
+     3.347,
+     1.202
+    ],
+    "10%": [
+     3.514,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "86616:terms associat x 35308:references to fire"
+  },
+  {
+   "A": 76330,
+   "B": 6595,
+   "A_family": "weapons",
+   "B_family": "selfharm",
+   "A_desc": "references to firearms",
+   "B_desc": "references to self-harm and suicidal actions",
+   "cos": 0.0631,
+   "inject_mag": 1.549,
+   "acts_A_B": {
+    "75%": [
+     1.303,
+     3.512
+    ],
+    "50%": [
+     2.621,
+     2.608
+    ],
+    "25%": [
+     3.423,
+     1.193
+    ],
+    "10%": [
+     3.574,
+     0.0
+    ]
+   },
+   "has_10pct": false,
+   "name": "76330:references to  x 6595:references to self"
+  }
+ ],
+ "n": 12,
+ "gate1_both_pass": [
+  5048,
+  6595,
+  6791,
+  9661,
+  13131,
+  22395,
+  35308,
+  39388,
+  51141,
+  59899,
+  69273,
+  73564,
+  76300,
+  76330,
+  82243,
+  83173,
+  85634,
+  86616,
+  89977,
+  94468,
+  120590,
+  125117,
+  125203,
+  127290
+ ]
+}

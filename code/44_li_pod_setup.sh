@@ -17,7 +17,7 @@ echo "== repos =="
 
 echo "== python deps =="
 pip install -q -r selfie-adapters/requirements.txt
-pip install -q "transformers==4.55.0" accelerate safetensors huggingface_hub hf_transfer   # Transluce config was saved with 4.55.0
+pip install -q "transformers==4.55.0" accelerate safetensors huggingface_hub hf_transfer peft   # Transluce config was saved with 4.55.0
 python - <<'EOF'
 import transformers, torch; print("transformers", transformers.__version__, "| torch", torch.__version__, "| cuda", torch.cuda.is_available())
 EOF

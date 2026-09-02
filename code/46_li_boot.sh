@@ -4,7 +4,7 @@
 set -euo pipefail
 cd /workspace/MATS-project && git pull -q && git log --oneline -1
 pip install -q -r /workspace/selfie-adapters/requirements.txt
-pip install -q "transformers==4.55.0" accelerate safetensors huggingface_hub hf_transfer
+pip install -q "transformers==4.55.0" accelerate safetensors huggingface_hub hf_transfer peft
 python -c "import transformers, torch; print('transformers', transformers.__version__, '| cuda', torch.cuda.is_available())"
 mkdir -p /workspace/li /workspace/RESULTS
 touch /workspace/li/KEEP                      # tell any crashed-and-holding pipeline not to stop the pod

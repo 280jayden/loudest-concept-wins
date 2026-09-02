@@ -492,8 +492,10 @@ pick(concern_pairs, 6, chosen_u, per_combo, per_fam)
 pick(list(unordered), 6, chosen_u, per_combo, per_fam)          # fill if the caps left room
 log(f"anchor x concerning unordered available: {len(anchor_pairs)}, concerning x concerning: {len(concern_pairs)}")
 chosen = [directed[(a_, b_)] for (a_, b_) in chosen_u] + [directed[(b_, a_)] for (a_, b_) in chosen_u]
-PAIRS = [(f"{feats[p['A']]['desc'][:16]} x {feats[p['B']]['desc'][:22]}", p["A"], p["B"]) for p in chosen]
-assert len(set(nm for nm, _, _ in PAIRS)) == len(PAIRS), "pair names collide; lengthen the name slices"
+for p in chosen:
+    p["name"] = f"{p['A']}:{feats[p['A']]['desc'].strip()[:14]} x {p['B']}:{feats[p['B']]['desc'].strip()[:18]}"
+PAIRS = [(p["name"], p["A"], p["B"]) for p in chosen]
+assert len(set(nm for nm, _, _ in PAIRS)) == len(PAIRS), "pair names collide"
 NO10 = {(p["A"], p["B"]) for p in chosen if not p["has_10pct"]}
 json.dump({"pairs": chosen, "n": len(chosen), "gate1_both_pass": ok}, open(f"{W}/pairs_final.json", "w"), indent=1)
 log(f"final pairs: {len(PAIRS)} directed ({len(chosen_u)} unordered x 2 directions); without a 10% row: {len(NO10)}")

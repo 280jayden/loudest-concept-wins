@@ -91,9 +91,11 @@ log(subprocess.run("nvidia-smi --query-gpu=name,memory.total --format=csv,nohead
 # gates 2 and 3 run here, on the pod, from the Neuronpedia candidate list in the repo
 CANDS_JSON = os.environ.get("LI_CANDS", "/workspace/MATS-project/results/RESULTS/np_candidates_L19_131k.json")
 PAIRS_FILE = f"{W}/li_pairs_candidates.json"
+# the network volume (/workspace) is ~50 GB and the three models fill it; SAE + adapters go to a second cache
+XC = os.environ.get("LI_EXTRA_CACHE", "/root/hf_extra")
 if not os.path.exists(PAIRS_FILE):
     from huggingface_hub import hf_hub_download as _dl
-    _sae = _dl("fnlp/Llama3_1-8B-Base-LXR-32x", "Llama3_1-8B-Base-L19R-32x/checkpoints/final.safetensors")
+    _sae = _dl("fnlp/Llama3_1-8B-Base-LXR-32x", "Llama3_1-8B-Base-L19R-32x/checkpoints/final.safetensors", cache_dir=XC)
     r = subprocess.run(f"python /workspace/MATS-project/code/42_li_local_gates.py --sae {_sae} "
                        f"--cands {CANDS_JSON} --out {PAIRS_FILE} --per_family 4",
                        shell=True, capture_output=True, text=True)
@@ -127,7 +129,7 @@ inst = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3.1-8B-Instru
 log("base + instruct loaded")
 
 sae_path = hf_hub_download("fnlp/Llama3_1-8B-Base-LXR-32x",
-                           "Llama3_1-8B-Base-L19R-32x/checkpoints/final.safetensors")
+                           "Llama3_1-8B-Base-L19R-32x/checkpoints/final.safetensors", cache_dir=XC)
 S = load_file(sae_path)
 W_DEC = S["decoder.weight"].float().to(DEV)            # (4096, 131072)
 W_ENC = S["encoder.weight"].float().to(DEV)            # (131072, 4096)
@@ -156,7 +158,7 @@ expl = ContinuousLlama.from_pretrained("Transluce/features_explain_llama3.1_8b_l
 log("Li explainer loaded")
 
 adapter = load_adapter(hf_hub_download("keenanpepper/selfie-adapters-llama-3.1-8b-instruct",
-                                       "llamascope-sae-scalar-affine.safetensors"))
+                                       "llamascope-sae-scalar-affine.safetensors", cache_dir=XC))
 log("Pepper llamascope scalar-affine adapter loaded:", adapter.get_metadata())
 
 # ---- prompts, exactly as each method was trained
@@ -559,7 +561,7 @@ subprocess.run(f"cp {W}/floors.pkl /workspace/RESULTS/", shell=True)
 # ----------------------------------------------------------------------------- 7b rank-64 adapter (extra arm)
 log("=== stage 7b: Pepper llamascope scalar-affine + rank-64 adapter, same pairs, same scorer ===")
 adapter64 = load_adapter(hf_hub_download("keenanpepper/selfie-adapters-llama-3.1-8b-instruct",
-                                         "llamascope-sae-sa-lr64.safetensors"))
+                                         "llamascope-sae-sa-lr64.safetensors", cache_dir=XC))
 log("rank-64 adapter loaded:", adapter64.get_metadata())
 G64 = ck("gate1_64")                         # recorded for audit; the pair set is NOT reselected
 for i in sorted({ia for _, ia, _ in PAIRS} | {ib for _, _, ib in PAIRS}):

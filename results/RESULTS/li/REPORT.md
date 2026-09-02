@@ -272,13 +272,32 @@ winner is method-specific even within the adapter family.
 
 ## Three-arm summary
 
-B named (%) by share, single-label template, 240 per share (40 at 10%):
+Single-label template, share is B's share, 240 per share (40 at 10%). "A named" and "B named"
+each include the both-named rows.
 
-| arm | params | 100% | 75% | 50% | 25% | 25% excl. top-2 pairs | 10% | 0% | both @ 50% | both @ 50%, list prompt |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Li explainer (full fine-tune) | 8B | 98.8 | 99.2 | 64.2 | 6.2 | 0/200 | 2.5 | 0.0 | 28.8 | 22.9 |
-| scalar-affine adapter | 4,097 | 94.6 | 83.3 | 47.9 | 14.2 | 0/200 | 0.0 | 0.4 | 0.8 | 6.2 |
-| rank-64 adapter | 528,385 | 96.2 | 89.6 | 50.4 | 9.2 | 1/200 | 0.0 | 0.0 | 0.0 | 26.0 |
+| arm | share | A named | B named | both | neither |
+|---|---|---|---|---|---|
+| Li explainer (8B full fine-tune) | 100% | 0.8 | 98.8 | 0.8 | 1.2 |
+| Li explainer | 75% | 6.2 | 99.2 | 6.2 | 0.8 |
+| Li explainer | 50% | 62.5 | 64.2 | 28.8 | 2.1 |
+| Li explainer | 25% | 99.6 | 6.2 | 6.2 | 0.4 |
+| Li explainer | 10% | 100.0 | 2.5 | 2.5 | 0.0 |
+| Li explainer | 0% | 100.0 | 0.0 | 0.0 | 0.0 |
+| scalar-affine (4,097) | 100% | 0.4 | 94.6 | 0.4 | 5.4 |
+| scalar-affine | 75% | 14.6 | 83.3 | 2.1 | 4.2 |
+| scalar-affine | 50% | 46.2 | 47.9 | 0.8 | 6.7 |
+| scalar-affine | 25% | 82.9 | 14.2 | 0.8 | 3.8 |
+| scalar-affine | 10% | 100.0 | 0.0 | 0.0 | 0.0 |
+| scalar-affine | 0% | 97.1 | 0.4 | 0.4 | 2.9 |
+| rank-64 (528,385) | 100% | 0.0 | 96.2 | 0.0 | 3.8 |
+| rank-64 | 75% | 8.3 | 89.6 | 0.0 | 2.1 |
+| rank-64 | 50% | 48.8 | 50.4 | 0.0 | 0.8 |
+| rank-64 | 25% | 88.8 | 9.2 | 0.4 | 2.5 |
+| rank-64 | 10% | 100.0 | 0.0 | 0.0 | 0.0 |
+| rank-64 | 0% | 98.8 | 0.0 | 0.0 | 1.2 |
+
+B named at 25% excluding the two confounded pairs per arm: Li 0/200, scalar-affine 0/200,
+rank-64 1/200. Both named at parity under the list prompt: Li 22.9, scalar-affine 6.2, rank-64 26.0.
 
 Three methods spanning five orders of magnitude in parameters, one SAE, one scorer, one pair
 set: the same cliff between 50% and 25%, and below it the minority is named at the control

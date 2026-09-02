@@ -80,6 +80,14 @@ def stop_pod(reason):
 def _hook(t, v, tb):
     import traceback
     log("UNHANDLED EXCEPTION:\n" + "".join(traceback.format_exception(t, v, tb)))
+    subprocess.run(f"mkdir -p /workspace/RESULTS && cp {W}/*.pkl {W}/*.json {W}/run.log /workspace/RESULTS/ 2>/dev/null", shell=True)
+    # A stopped pod may not get its GPU back. Hold the pod for 40 min so a fix can be launched
+    # (the relauncher touches /workspace/li/KEEP); stop only if nobody resumed.
+    log("crash: holding pod 40 min for a resume; touch /workspace/li/KEEP to keep it up")
+    for _ in range(40):
+        time.sleep(60)
+        if os.path.exists(f"{W}/KEEP"):
+            log("KEEP present; leaving pod running"); return
     stop_pod("crash")
 
 

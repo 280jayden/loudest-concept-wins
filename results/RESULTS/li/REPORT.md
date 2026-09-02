@@ -151,12 +151,20 @@ A named / B named / both, out of 20. Direction 1 then direction 2 (A and B swapp
 | weapons 35308 / drugs 86616 | 20/2/2 | 0/20/0 | 20/0/0 | 0/20/0 |
 | selfharm 6595 / firearms 76330 | 10/19/10 | 18/12/12 | 0/20/0 | 19/0/0 |
 
-Reading the table: in direction 1 the first concept is A; in direction 2 it is B. So "20/0/0
-then 0/20/0" means the first concept was named every time in both directions, regardless of
-which position it held. The winner is the same concept in both directions for 5/5 decided pairs
-under Li and 6/6 under the adapter. The two methods disagree on the winner for two pairs
-(baking 51141 vs bombs 59899: Li names bombs, the adapter names baking; baking 39388 vs bombs
-59899: Li names both, the adapter leans baking).
+Reading the table: in direction 1 the first concept is A; in direction 2 it is B. **Correction
+to what I wrote overnight:** at parity the two directions are the same vector
+(0.5 u_A + 0.5 u_B normalised is symmetric), so the two columns per method are two independent
+20-draw samples of one cell, not a test of position. "Same winner in both directions" at parity
+is therefore a replication across 40 draws, not evidence against a position effect. What the two
+directions do test is the 75% and 25% rows, where the vectors differ (0.75 u_A + 0.25 u_B versus
+0.25 u_A + 0.75 u_B): the minority is hidden whichever concept is the minority. The per-share
+counts at 75/25/10% come from 12 distinct vectors x 20 draws; at 50% from 6 vectors x 40 draws.
+
+What survives: the parity winner is stable across 40 independent draws for most pairs (20/0
+then 0/20 means the same concept won all 40), and the two methods pick different winners for
+two pairs (baking 51141 vs bombs 59899: Li names bombs, the adapter names baking; baking 39388
+vs bombs 59899: Li names both, the adapter leans baking). So the winner is a property of the
+concept under the method, not of the vector.
 
 ## Hypotheses
 
@@ -168,7 +176,7 @@ under Li and 6/6 under the adapter. The two methods disagree on the winner for t
 | H4 both-named at parity for Li between adapters' 6% and NLA's 46% | 10 to 25% | **above range, 29%, and pair-specific.** Two pairs carry it (baking/bombs 40/40, selfharm/firearms 22/40); three pairs are near zero. |
 | H5 list prompt recovers at parity, not below | yes | **yes for the adapters, moot for Li.** At parity rank-64 goes 0% to 26% both, scalar-affine 0.8% to 6%; Li 29% to 23% (already conjoins without the prompt). Below parity nothing beyond the flagged pairs. |
 | H6 parity winner tracks describability threshold | replicates | **underpowered.** Thresholds saturate on this SAE (most concepts hit 1.0 at 0.5x magnitude), only 2 decided pairs for Li, both agree. |
-| H7 the 50/50 asymmetry | none | **winner is concept-intrinsic and method-specific.** Same concept wins in both directions for every pair, and the two methods pick different winners for two pairs. |
+| H7 the 50/50 asymmetry | none | **winner is concept-specific and method-specific.** Stable across 40 draws per pair; the two methods pick different winners for two pairs. The direction test is vacuous at parity (same vector), see correction above. |
 
 ## What I read into it (for the discussion section)
 
@@ -185,11 +193,11 @@ under Li and 6/6 under the adapter. The two methods disagree on the winner for t
    graded readout of the two shares: when the explainer does name both, it does so at 100%
    for that pair and 0% for the next.
 
-3. **The parity winner is a property of the concept under the method, not of the vector.**
-   Running every pair in both directions rules out position or magnitude effects: the same
-   concept wins whichever share slot it occupies. And the winner differs between methods for
-   two of six pairs, which is what the two-regime account predicts (at parity, the concept
-   that the method can describe at lower magnitude wins). The direct threshold test (H6) is
+3. **The parity winner is a property of the concept under the method.** It is stable across
+   40 independent draws per pair, and it differs between methods for two of six pairs, which is
+   what the two-regime account predicts (at parity, the concept that the method can describe
+   at lower magnitude wins). Note the parity vector is identical in both directions, so
+   direction is not a manipulation there; it is one at 75/25/10%. The direct threshold test (H6) is
    underpowered here because Llama Scope concepts are describable at 0.5x magnitude almost
    uniformly; the Goodfire data had more spread.
 
@@ -214,13 +222,56 @@ under Li and 6/6 under the adapter. The two methods disagree on the winner for t
 - Headline table: B named at 50% / 25% / 0% for each of the four methods (Goodfire adapters,
   NLA, Li, Llama Scope adapter). Li 64 / 6 / 0; Llama Scope adapter 48 / 14 / 0.4; with the
   exclusion rule 64 / 0 / 0 and 48 / 0 / 0.
-- Figure: per-pair parity table with both directions; it makes the "concept-intrinsic winner"
-  point visually and needs no statistics.
+- Figure: per-pair parity table, 40 draws per pair per method; it makes the "concept-specific,
+  method-specific winner" point visually and needs no statistics.
 - Sample sizes: 12 directed pairs x 20 = 240 per share, 40 at 10%, floors 180 per method.
 - Limitations paragraph: scorer sensitivity (gate 1 pass rate), the co-occurrence confound and
   the exclusion rule, no 10% row for most pairs at the trained magnitude, H6 underpowered.
 - Method-comparison caveat: Li runs on base Llama and the adapters on Instruct; that is
   inherent to the methods, the scorer is identical.
+
+
+## Quirks in the raw descriptions
+
+Read from all 3,720 sampled descriptions plus the gate-1 outputs (`code/45_li_analyze.py`
+does the tables; this section is from reading the text).
+
+- **Style.** Li writes 16 words on average, the adapters 7. Both are templated: "references to"
+  opens 79% of Li's and 67% of the adapters' descriptions. Li adds a "particularly ..." qualifier
+  with invented specifics: "donuts and pastries from a specific bakery in Los Angeles",
+  "bakery-related products in London and Paris, France, and Virginia", the name "Graham" for a
+  spice feature, "Peace Corps" for a peace feature. These specifics are confabulated detail on
+  a correct concept, and the scorer ignores them.
+- **Diversity.** Li produces 17.4 unique descriptions per 20 draws; the adapters 13 to 14.5.
+  Adapter outputs repeat at temperature 0.7.
+- **Switching, not blending.** Following one pair across shares (baking 51141 majority, fraud
+  125117 minority): Li at 100% and 75% fraud writes fraud with sub-facets (elderly victims,
+  charity donations, religion); at 50% it flips to baking outright and stays there. Nothing in
+  between: no "financial and culinary" hybrids. The adapter does the same but with one extra
+  step: at 75% fraud it drifts to a neighbouring concept (cybercrime, phishing, hacking) that
+  the fraud latent does not fire on, then flips to baking at 50%.
+- **"Neither" rows.** Li has 11 of 1,240; most are correct descriptions the scorer missed
+  ("references to explosives and bomb-related incidents" at 100% explosives scored neither).
+  The adapters have 55 and 25; theirs are vaguer near-misses ("medical or healthcare concepts"
+  for prescription drugs, "cybersecurity threats" for fraud) and one hallucination ("the name
+  Helen" for spices). So the adapters' failures are semantic drift; Li's are scorer misses.
+- **Conjunctions.** About 65% of Li's descriptions contain "X and Y", but nearly all are
+  within-concept ("baked goods and desserts", "explosives and bomb-making"). Cross-concept
+  conjunctions ("baking and explosive devices") occur for one pair only, and there in 40/40.
+- **Gate-1 failure modes differ.** Where Li passes and the adapter fails, the adapter is not
+  vaguer, it is wrong: "historical events" for cooking actions, "governance and policy" for a
+  spice, "social media" for seasoning. Where both fail, Li is often right and the scorer misses
+  (ransomware 82686 described as ransomware, scored 0.0; theft 110615 scored 0.7), and for a few
+  features both methods agree on something other than the Neuronpedia label (self-harm 127060
+  read as automotive recalls by both; extremism 124033 read as symbols by Li). Those labels may
+  be wrong or the features polysemantic; worth a Neuronpedia look before citing them.
+- **Dominance under the adapters.** For drugs (75%) x firearms (25%) the adapters write
+  "firearms and their regulations" 17 to 20 times out of 20; Li writes opioid prescribing. The
+  firearms latent is loud for the adapters specifically, consistent with the winner being a
+  method-concept property.
+- **Greedy at parity (Li).** Five of six pairs give a single-concept greedy description; the
+  baking 39388 x bombs pair gives the conjunction; self-harm x firearms gives a mixture scored
+  0.3 / 0.6. Greedy and sampled agree on the winner in every pair.
 
 ## Run log and cost (for the record)
 
@@ -265,7 +316,7 @@ prompt. That is the Goodfire list-prompt result (8% to 31%) reproduced on a seco
 second adapter: the parity information is there and the single-slot format hides it. Below
 parity the list prompt recovers nothing beyond the dominance pair.
 
-Parity winner is the same concept in both directions for 6/6 pairs, and rank-64 disagrees
+Parity winner is stable across the 40 draws for 6/6 pairs, and rank-64 disagrees
 with scalar-affine on two of them (baking 39388 / bombs 59899: rank-64 names bombs, scalar-affine
 names baking; bombs 59899 / spices 73564: rank-64 names bombs, scalar-affine names spices). The
 winner is method-specific even within the adapter family.

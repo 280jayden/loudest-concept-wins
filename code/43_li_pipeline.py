@@ -228,14 +228,15 @@ def gen_li(vec, n, mag, seed=None, greedy=False, list_prompt=False, max_new=30):
 
 
 @torch.no_grad()
-def gen_adapter(vec, n, seed=None, list_prompt=False, max_new=30, ad=None):
-    """Pepper llamascope adapter on Instruct. Trained at unit norm -> scale 1.0.
-    `ad` selects the adapter object (default: scalar-affine); rank-64 uses the same path."""
+def gen_adapter(vec, n, seed=None, list_prompt=False, max_new=30, ad=None, scale=1.0):
+    """Pepper llamascope adapter on Instruct. Trained at unit norm -> scale 1.0 (the sweep).
+    `ad` selects the adapter object (default: scalar-affine); rank-64 uses the same path.
+    `scale` != 1 is used only by the describability-threshold stage."""
     if seed is not None:
         torch.manual_seed(seed)
     ad = ad if ad is not None else adapter
     v = vec.to(DEV).float().unsqueeze(0)
-    v = v / v.norm(dim=-1, keepdim=True)
+    v = v / v.norm(dim=-1, keepdim=True) * scale
     soft = ad.transform(v, normalize_input=False).to(dtype=AD_EMB.dtype, device=DEV)
     emb0, pos, mn = (AD_LIST_EMB, AD_LIST_POS, 90) if list_prompt else (AD_EMB, AD_POS, max_new)
     emb = emb0.expand(n, -1, -1).clone()
@@ -429,6 +430,28 @@ log(f"final pairs: {len(PAIRS)}")
 for nm, a_, b_ in PAIRS:
     log("   ", nm)
 assert len(PAIRS) >= 6, "too few pairs survived gate 1; stop and look"
+
+# ----------------------------------------------------------------------------- 3b describability threshold
+# For H6 (parity winner tracks the single-concept describability threshold): every concept in the
+# final pairs, alone, at sub-trained magnitudes. Li: 0.5/0.7/1.0 x its raw norm. Adapter: 0.5/0.8 x unit
+# (the Goodfire arm used gate-1 hit at scale 0.5/0.8). Three sampled descriptions per cell, best hit kept.
+log("=== stage 3b: describability threshold per concept ===")
+TH = ck("thresh")
+for i in sorted({ia for _, ia, _ in PAIRS} | {ib for _, _, ib in PAIRS}):
+    if i in TH:
+        continue
+    TH[i] = {"li": {}, "adapter": {}}
+    for f in [0.5, 0.7, 1.0]:
+        d_ = gen_li(unit(i), 3, float(NORMS[i]) * f, seed=seed_of("thli", i, f))
+        TH[i]["li"][f] = list(zip(d_, [x[i] for x in score_many(d_, [i])]))
+    for f in [0.5, 0.8]:
+        d_ = gen_adapter(unit(i), 3, seed=seed_of("thad", i, f), scale=f)
+        TH[i]["adapter"][f] = list(zip(d_, [x[i] for x in score_many(d_, [i])]))
+    save("thresh", TH)
+    log(f"thr {i:>7} Li " + " ".join(f"{f}x:{max(s for _, s in TH[i]['li'][f]):.1f}" for f in [0.5, 0.7, 1.0]) +
+        " | adapter " + " ".join(f"{f}x:{max(s for _, s in TH[i]['adapter'][f]):.1f}" for f in [0.5, 0.8]) +
+        f" | {feats[i]['desc'][:36]}")
+subprocess.run(f"cp {W}/thresh.pkl {W}/gate1.pkl {W}/pairs_final.json /workspace/RESULTS/ 2>/dev/null", shell=True)
 
 ALPHAS = [0.0, 0.25, 0.5, 0.75, 0.9, 1.0]
 SHARE = {0.0: "100%", 0.25: "75%", 0.5: "50%", 0.75: "25%", 0.9: "10%", 1.0: "0% (control)"}

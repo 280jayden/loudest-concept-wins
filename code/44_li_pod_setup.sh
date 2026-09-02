@@ -17,7 +17,7 @@ echo "== repos =="
 
 echo "== python deps =="
 pip install -q -r selfie-adapters/requirements.txt
-pip install -q "transformers==4.55.0" accelerate safetensors huggingface_hub   # Transluce config was saved with 4.55.0
+pip install -q "transformers==4.55.0" accelerate safetensors huggingface_hub hf_transfer   # Transluce config was saved with 4.55.0
 python - <<'EOF'
 import transformers, torch; print("transformers", transformers.__version__, "| torch", torch.__version__, "| cuda", torch.cuda.is_available())
 EOF
@@ -32,6 +32,7 @@ for r in ["meta-llama/Llama-3.1-8B", "meta-llama/Meta-Llama-3.1-8B-Instruct",
     p = snapshot_download(r, allow_patterns=["*.json", "*.safetensors", "tokenizer*"]); print("ok", r)
 hf_hub_download("fnlp/Llama3_1-8B-Base-LXR-32x", "Llama3_1-8B-Base-L19R-32x/checkpoints/final.safetensors"); print("ok llama scope L19")
 hf_hub_download("keenanpepper/selfie-adapters-llama-3.1-8b-instruct", "llamascope-sae-scalar-affine.safetensors"); print("ok adapter")
+hf_hub_download("keenanpepper/selfie-adapters-llama-3.1-8b-instruct", "llamascope-sae-sa-lr64.safetensors"); print("ok adapter rank-64")
 EOF
 
 echo "== shutdown path =="

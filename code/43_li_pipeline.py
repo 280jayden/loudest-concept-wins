@@ -20,7 +20,8 @@ Stages (in order)
   5  score everything with the one scorer
   6  adapter sweep, same pairs, same scorer
   7  floors: 20 random directions x 12 latents under each method
-  8  save, copy to RESULTS, stop pod
+  7b rank-64 adapter (scalar-affine + low-rank, 528,385 params): gate-1 record, sweep, list, floor
+  8  save, copy to RESULTS, stop pod (also on crash, via sys.excepthook)
 
 The scorer is identical for both methods: Instruct writes ten short conversations from
 the description, base Llama runs them forward, Llama Scope encodes layer 19, the target
@@ -62,6 +63,27 @@ assert os.environ.get("HF_TOKEN"), "HF_TOKEN not set and /workspace/.hf_token mi
 POD_ID = os.environ.get("RUNPOD_POD_ID", "")
 HAS_RUNPODCTL = subprocess.run("which runpodctl", shell=True, capture_output=True).returncode == 0
 log(f"runpodctl present: {HAS_RUNPODCTL}   RUNPOD_POD_ID: {POD_ID or 'MISSING'}")
+
+
+def stop_pod(reason):
+    """Copy everything out, then STOP (never terminate) the pod if LI_STOP_POD=1."""
+    subprocess.run(f"mkdir -p /workspace/RESULTS && cp {W}/*.pkl {W}/*.json {W}/run.log /workspace/RESULTS/ 2>/dev/null", shell=True)
+    if os.environ.get("LI_STOP_POD") != "1":
+        log(f"[{reason}] LI_STOP_POD unset; pod left running"); return
+    if HAS_RUNPODCTL and POD_ID:
+        log(f"[{reason}] stopping pod {POD_ID} (not terminating)"); LOG.flush()
+        subprocess.run(f"runpodctl stop pod {POD_ID}", shell=True)
+    else:
+        log(f"[{reason}] LI_STOP_POD=1 but runpodctl or RUNPOD_POD_ID missing; pod left running")
+
+
+def _hook(t, v, tb):
+    import traceback
+    log("UNHANDLED EXCEPTION:\n" + "".join(traceback.format_exception(t, v, tb)))
+    stop_pod("crash")
+
+
+sys.excepthook = _hook
 log(subprocess.run("df -h /workspace | tail -1", shell=True, capture_output=True, text=True).stdout.strip())
 log(subprocess.run("nvidia-smi --query-gpu=name,memory.total --format=csv,noheader", shell=True,
                    capture_output=True, text=True).stdout.strip())
@@ -206,13 +228,15 @@ def gen_li(vec, n, mag, seed=None, greedy=False, list_prompt=False, max_new=30):
 
 
 @torch.no_grad()
-def gen_adapter(vec, n, seed=None, list_prompt=False, max_new=30):
-    """Pepper llamascope scalar-affine adapter on Instruct. Trained at unit norm -> scale 1.0."""
+def gen_adapter(vec, n, seed=None, list_prompt=False, max_new=30, ad=None):
+    """Pepper llamascope adapter on Instruct. Trained at unit norm -> scale 1.0.
+    `ad` selects the adapter object (default: scalar-affine); rank-64 uses the same path."""
     if seed is not None:
         torch.manual_seed(seed)
+    ad = ad if ad is not None else adapter
     v = vec.to(DEV).float().unsqueeze(0)
     v = v / v.norm(dim=-1, keepdim=True)
-    soft = adapter.transform(v, normalize_input=False).to(dtype=AD_EMB.dtype, device=DEV)
+    soft = ad.transform(v, normalize_input=False).to(dtype=AD_EMB.dtype, device=DEV)
     emb0, pos, mn = (AD_LIST_EMB, AD_LIST_POS, 90) if list_prompt else (AD_EMB, AD_POS, max_new)
     emb = emb0.expand(n, -1, -1).clone()
     for p in pos:
@@ -268,36 +292,57 @@ def parse_conv(text):
 
 
 @torch.no_grad()
-def score(desc, latents, n=10):
-    """description -> Instruct writes n conversations -> base Llama forward -> Llama Scope L19."""
-    if not desc:
-        return {li: 0.0 for li in latents}
-    msgs = [{"role": "system", "content": CONV_SYSTEM},
-            {"role": "user", "content": CONV_PROMPT.replace("_", desc[:400])}]
+def score_many(descs, latents, n=10, chunk=120):
+    """Batched scorer, one metric for every arm.
+    description -> Instruct writes n conversations -> base Llama forward -> Llama Scope L19;
+    the target latent counts as fired if > 0 on any post-BOS token; hit rate = fired / n valid.
+    Batching only changes how many conversations share a generate call; prompts, sampling
+    (T 0.7, top-p 0.9, 100 new tokens) and the forward/encode are identical per conversation."""
+    out = [None] * len(descs)
+    idx = []
+    for i, d_ in enumerate(descs):
+        if d_:
+            idx.append(i)
+        else:
+            out[i] = {li: 0.0 for li in latents}
+    msgs_all = []
+    for i in idx:
+        m = [{"role": "system", "content": CONV_SYSTEM},
+             {"role": "user", "content": CONV_PROMPT.replace("_", descs[i][:400])}]
+        msgs_all.extend([m] * n)
     itok.padding_side = "left"
-    enc = itok.apply_chat_template([msgs] * n, tokenize=True, add_generation_prompt=True,
-                                   return_tensors="pt", padding=True, return_dict=True).to(DEV)
-    gen = inst.generate(**enc, max_new_tokens=100, do_sample=True, temperature=0.7, top_p=0.9,
-                        pad_token_id=itok.pad_token_id, eos_token_id=itok.eos_token_id)
-    hits, valid = {li: 0 for li in latents}, 0
-    for g in gen:
-        t_ = itok.decode(g[enc["input_ids"].shape[1]:], skip_special_tokens=True).strip()
-        conv = parse_conv(t_)
-        if not conv:
-            continue
-        if tok.chat_template:                      # same formatting as the Goodfire arm when available
-            ids = tok.apply_chat_template(conv, tokenize=True, add_generation_prompt=False,
-                                          return_tensors="pt", return_dict=True)["input_ids"][:, :200].to(DEV)
-        else:                                      # base tokenizer without a template: plain text
-            text = "\n".join(f"{c['role']}: {c['content']}" for c in conv)
-            ids = tok(text, return_tensors="pt", truncation=True, max_length=200)["input_ids"].to(DEV)
-        h = base(input_ids=ids, output_hidden_states=True).hidden_states[LAYER + 1][0]
-        acts = sae_encode(h)
-        valid += 1
-        for li in latents:
-            if (acts[1:, li] > 0).any().item():
-                hits[li] += 1
-    return {li: (hits[li] / valid if valid else 0.0) for li in latents}
+    texts = []
+    for s0 in range(0, len(msgs_all), chunk):
+        enc = itok.apply_chat_template(msgs_all[s0:s0 + chunk], tokenize=True, add_generation_prompt=True,
+                                       return_tensors="pt", padding=True, return_dict=True).to(DEV)
+        gen = inst.generate(**enc, max_new_tokens=100, do_sample=True, temperature=0.7, top_p=0.9,
+                            pad_token_id=itok.pad_token_id, eos_token_id=itok.eos_token_id)
+        L0 = enc["input_ids"].shape[1]
+        texts += [itok.decode(g[L0:], skip_special_tokens=True).strip() for g in gen]
+    for j, i in enumerate(idx):
+        hits, valid = {li: 0 for li in latents}, 0
+        for t_ in texts[j * n:(j + 1) * n]:
+            conv = parse_conv(t_)
+            if not conv:
+                continue
+            if tok.chat_template:                  # same formatting as the Goodfire arm when available
+                ids = tok.apply_chat_template(conv, tokenize=True, add_generation_prompt=False,
+                                              return_tensors="pt", return_dict=True)["input_ids"][:, :200].to(DEV)
+            else:                                  # base tokenizer without a template: plain text, BOS added
+                text = "\n".join(f"{c['role']}: {c['content']}" for c in conv)
+                ids = tok(text, return_tensors="pt", truncation=True, max_length=200)["input_ids"].to(DEV)
+            h = base(input_ids=ids, output_hidden_states=True).hidden_states[LAYER + 1][0]
+            acts = sae_encode(h)
+            valid += 1
+            for li in latents:
+                if (acts[1:, li] > 0).any().item():
+                    hits[li] += 1
+        out[i] = {li: (hits[li] / valid if valid else 0.0) for li in latents}
+    return out
+
+
+def score(desc, latents, n=10):
+    return score_many([desc], latents, n)[0]
 
 
 def compose(ia, ib, alpha):
@@ -399,16 +444,29 @@ def sweep(tag, genfn, res):
                 continue
             v, m = compose(ia, ib, al), mag_for(ia, ib)
             texts = genfn(v, N_DESC, m, seed_of(tag, ia, ib, al))
-            rows = []
-            for t_ in texts:
-                s = score(t_, [ia, ib])
-                rows.append({"label": t_, "hit_A": s[ia], "hit_B": s[ib]})
+            ss = score_many(texts, [ia, ib])
+            rows = [{"label": t_, "hit_A": s[ia], "hit_B": s[ib]} for t_, s in zip(texts, ss)]
             res[key] = rows
             save(tag, res)
         done = [r for k, v_ in res.items() if k[0] == tag and k[2] == al for r in v_]
         named = sum(1 for r in done if r["hit_B"] >= THR)
         log(f"[{tag}] {SHARE[al]:>13}  B named {named}/{len(done)}")
     return res
+
+
+def list_rows(texts, ia, ib):
+    """List-prompt cells: split each draw into numbered items (max 6), score every item at
+    n=6, a concept counts as recovered if any item hits it. Same rule as the Goodfire arm."""
+    per = [[re.sub(r'^\s*\d+[\.\)]\s*', '', x).strip(" -*") for x in t_.split("\n") if x.strip()][:6] for t_ in texts]
+    flat = [it for items in per for it in items]
+    ss = score_many(flat, [ia, ib], n=6)
+    rows, k = [], 0
+    for t_, items in zip(texts, per):
+        bA = bB = 0.0
+        for _ in items:
+            bA, bB = max(bA, ss[k][ia]), max(bB, ss[k][ib]); k += 1
+        rows.append({"label": t_, "items": items, "hit_A": bA, "hit_B": bB})
+    return rows
 
 
 log("=== stage 4/5: Li sweep + scoring ===")
@@ -427,14 +485,9 @@ for nm, ia, ib in PAIRS:                          # list prompt at 50% and 25%
         key = ("li_list", nm, al)
         if key in LI:
             continue
-        rows = []
-        for t_ in gen_li(compose(ia, ib, al), 8, mag_for(ia, ib), seed=seed_of("lilist", ia, ib, al), list_prompt=True):
-            items = [re.sub(r'^\s*\d+[\.\)]\s*', '', x).strip(" -*") for x in t_.split("\n") if x.strip()][:6]
-            bA = bB = 0.0
-            for it in items:
-                s = score(it, [ia, ib], n=6); bA, bB = max(bA, s[ia]), max(bB, s[ib])
-            rows.append({"label": t_, "items": items, "hit_A": bA, "hit_B": bB})
-        LI[key] = rows; save("li", LI)
+        LI[key] = list_rows(gen_li(compose(ia, ib, al), 8, mag_for(ia, ib), seed=seed_of("lilist", ia, ib, al),
+                                   list_prompt=True), ia, ib)
+        save("li", LI)
     log(f"[li_list] {nm}")
 log("Li arm complete")
 subprocess.run(f"mkdir -p /workspace/RESULTS && cp {W}/li.pkl {W}/gate1.pkl {W}/preflight.pkl {W}/pairs_final.json /workspace/RESULTS/", shell=True)
@@ -448,40 +501,70 @@ for nm, ia, ib in PAIRS:
         key = ("adapter_list", nm, al)
         if key in AD:
             continue
-        rows = []
-        for t_ in gen_adapter(compose(ia, ib, al), 8, seed=seed_of("adlist", ia, ib, al), list_prompt=True):
-            items = [re.sub(r'^\s*\d+[\.\)]\s*', '', x).strip(" -*") for x in t_.split("\n") if x.strip()][:6]
-            bA = bB = 0.0
-            for it in items:
-                s = score(it, [ia, ib], n=6); bA, bB = max(bA, s[ia]), max(bB, s[ib])
-            rows.append({"label": t_, "items": items, "hit_A": bA, "hit_B": bB})
-        AD[key] = rows; save("adapter", AD)
+        AD[key] = list_rows(gen_adapter(compose(ia, ib, al), 8, seed=seed_of("adlist", ia, ib, al), list_prompt=True), ia, ib)
+        save("adapter", AD)
 log("adapter arm complete")
 subprocess.run(f"cp {W}/adapter.pkl /workspace/RESULTS/", shell=True)
 
 # ----------------------------------------------------------------------------- 7 floors
 log("=== stage 7: random-direction floor, 20 x 12 latents = 240 per method ===")
-FL = ck("floors")
-targets = sorted({ia for _, ia, _ in PAIRS} | {ib for _, _, ib in PAIRS})[:12]
-for tag, genfn in [("li", lambda v, s: gen_li(v, 1, float(NORMS.mean()), seed=s)[0]),
-                   ("adapter", lambda v, s: gen_adapter(v, 1, seed=s)[0])]:
-    for k in range(20):
-        key = (tag, k)
-        if key in FL:
-            continue
-        torch.manual_seed(1000 + k)
-        rv = torch.randn(4096, device=DEV); rv = rv / rv.norm()
-        d_ = genfn(rv, seed_of("floor", tag, k))
-        s = score(d_, targets)
-        FL[key] = {"label": d_, "hits": {t_: s[t_] for t_ in targets}}
+# the 12 latents scored against: every concerning (B) latent of the final pairs first, then anchors
+targets = list(dict.fromkeys([ib for _, _, ib in PAIRS] + [ia for _, ia, _ in PAIRS]))[:12]
+LI_FLOOR_MAG = float(NORMS.mean())          # a random direction has no pair; use the mean trained magnitude
+
+
+def floors_for(tag, genfn, FL):
+    keys = [(tag, k) for k in range(20) if (tag, k) not in FL]
+    if keys:
+        descs = []
+        for _, k in keys:
+            torch.manual_seed(1000 + k)
+            rv = torch.randn(4096, device=DEV); rv = rv / rv.norm()
+            descs.append(genfn(rv, seed_of("floor", tag, k)))
+        for key, d_, s in zip(keys, descs, score_many(descs, targets)):
+            FL[key] = {"label": d_, "hits": {t_: s[t_] for t_ in targets}}
         save("floors", FL)
     fp = sum(1 for k_, v_ in FL.items() if k_[0] == tag for t_, h in v_["hits"].items() if h >= THR)
     log(f"floor [{tag}]: {fp}/{20*len(targets)} false positives")
 
+
+FL = ck("floors")
+floors_for("li", lambda v, s: gen_li(v, 1, LI_FLOOR_MAG, seed=s)[0], FL)
+floors_for("adapter", lambda v, s: gen_adapter(v, 1, seed=s)[0], FL)
+subprocess.run(f"cp {W}/floors.pkl /workspace/RESULTS/", shell=True)
+
+# ----------------------------------------------------------------------------- 7b rank-64 adapter (extra arm)
+log("=== stage 7b: Pepper llamascope scalar-affine + rank-64 adapter, same pairs, same scorer ===")
+adapter64 = load_adapter(hf_hub_download("keenanpepper/selfie-adapters-llama-3.1-8b-instruct",
+                                         "llamascope-sae-sa-lr64.safetensors"))
+log("rank-64 adapter loaded:", adapter64.get_metadata())
+G64 = ck("gate1_64")                         # recorded for audit; the pair set is NOT reselected
+for i in sorted({ia for _, ia, _ in PAIRS} | {ib for _, _, ib in PAIRS}):
+    if i in G64:
+        continue
+    d_ = gen_adapter(unit(i), 3, seed=seed_of("g1ad64", i), ad=adapter64)
+    s_ = [x[i] for x in score_many(d_, [i])]
+    G64[i] = {"adapter": list(zip(d_, s_)), "ad_pass": max(s_) >= 0.8}
+    save("gate1_64", G64)
+    log(f"g1(rank-64) {i:>7} {max(s_):.1f} {'PASS' if G64[i]['ad_pass'] else 'fail'} | {feats[i]['desc'][:40]}")
+A64 = ck("adapter64")
+A64 = sweep("adapter64", lambda v, n, m, s: gen_adapter(v, n, seed=s, ad=adapter64), A64)
+for nm, ia, ib in PAIRS:
+    for al in [0.5, 0.75]:
+        key = ("adapter64_list", nm, al)
+        if key in A64:
+            continue
+        A64[key] = list_rows(gen_adapter(compose(ia, ib, al), 8, seed=seed_of("ad64list", ia, ib, al),
+                                         list_prompt=True, ad=adapter64), ia, ib)
+        save("adapter64", A64)
+floors_for("adapter64", lambda v, s: gen_adapter(v, 1, seed=s, ad=adapter64)[0], FL)
+log("rank-64 arm complete")
+subprocess.run(f"cp {W}/adapter64.pkl {W}/gate1_64.pkl {W}/floors.pkl /workspace/RESULTS/", shell=True)
+
 # ----------------------------------------------------------------------------- 8 summarise, copy, stop
 log("=== stage 8: summary ===")
 summary = {"pairs": [nm for nm, _, _ in PAIRS], "n_pairs": len(PAIRS), "N_DESC": N_DESC}
-for tag, res in [("li", LI), ("adapter", AD)]:
+for tag, res in [("li", LI), ("adapter", AD), ("adapter64", A64)]:
     summary[tag] = {}
     for al in ALPHAS:
         rows = [r for k, v_ in res.items() if k[0] == tag and k[2] == al for r in v_]
@@ -497,11 +580,5 @@ json.dump(summary, open(f"{W}/summary.json", "w"), indent=1)
 subprocess.run(f"cp {W}/*.pkl {W}/*.json {W}/run.log /workspace/RESULTS/ 2>/dev/null", shell=True)
 log("results copied to /workspace/RESULTS")
 
-if os.environ.get("LI_STOP_POD") == "1":
-    if HAS_RUNPODCTL and POD_ID:
-        log("stopping pod (not terminating)")
-        LOG.flush()
-        subprocess.run(f"runpodctl stop pod {POD_ID}", shell=True)
-    else:
-        log("LI_STOP_POD=1 but runpodctl or RUNPOD_POD_ID missing; pod left running")
 log("done")
+stop_pod("done")

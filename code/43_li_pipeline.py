@@ -464,18 +464,33 @@ for (ia, ib), p in directed.items():
     if (ib, ia) in directed:                    # keep only pairs valid in both directions
         unordered[k] = min(p["acts_A_B"]["25%"][1], directed[(ib, ia)]["acts_A_B"]["25%"][1])
 log(f"directed pairs passing gates 2+3 (75/50/25): {len(directed)}; unordered valid both ways: {len(unordered)}")
-# up to 6 unordered pairs, strongest minority-at-25% first, at most 2 per family combination, at most 3 per family
+# 6 unordered pairs: up to 4 anchor x concerning (the benign-majority framing of the main experiment),
+# the rest concerning x concerning. Rank: 10% row available in both directions first, then minority
+# activation at 25%. At most 2 per family combination, at most 3 per family.
+ANCHOR_FAM = {"cooking", "baking", "spices"}
+
+
+def rank(k):
+    both10 = directed[(k[0], k[1])]["has_10pct"] and directed[(k[1], k[0])]["has_10pct"]
+    return (-int(both10), -unordered[k])
+
+
+def pick(cands, limit, chosen_u, per_combo, per_fam):
+    for k in sorted(cands, key=rank):
+        fa, fb = feats[k[0]]["family"], feats[k[1]]["family"]
+        combo = tuple(sorted((fa, fb)))
+        if k in chosen_u or per_combo[combo] >= 2 or per_fam[fa] >= 3 or per_fam[fb] >= 3 or len(chosen_u) >= limit:
+            continue
+        chosen_u.append(k); per_combo[combo] += 1; per_fam[fa] += 1; per_fam[fb] += 1
+
+
 chosen_u, per_combo, per_fam = [], Counter(), Counter()
-for k in sorted(unordered, key=lambda k: -unordered[k]):
-    fa, fb = feats[k[0]]["family"], feats[k[1]]["family"]
-    combo = tuple(sorted((fa, fb)))
-    if per_combo[combo] >= 2 or per_fam[fa] >= 3 or per_fam[fb] >= 3 or len(chosen_u) >= 6:
-        continue
-    chosen_u.append(k); per_combo[combo] += 1; per_fam[fa] += 1; per_fam[fb] += 1
-if len(chosen_u) < 6:
-    for k in sorted(unordered, key=lambda k: -unordered[k]):
-        if k not in chosen_u and len(chosen_u) < 6:
-            chosen_u.append(k)
+anchor_pairs = [k for k in unordered if (feats[k[0]]["family"] in ANCHOR_FAM) != (feats[k[1]]["family"] in ANCHOR_FAM)]
+concern_pairs = [k for k in unordered if feats[k[0]]["family"] not in ANCHOR_FAM and feats[k[1]]["family"] not in ANCHOR_FAM]
+pick(anchor_pairs, 4, chosen_u, per_combo, per_fam)
+pick(concern_pairs, 6, chosen_u, per_combo, per_fam)
+pick(list(unordered), 6, chosen_u, per_combo, per_fam)          # fill if the caps left room
+log(f"anchor x concerning unordered available: {len(anchor_pairs)}, concerning x concerning: {len(concern_pairs)}")
 chosen = [directed[(a_, b_)] for (a_, b_) in chosen_u] + [directed[(b_, a_)] for (a_, b_) in chosen_u]
 PAIRS = [(f"{feats[p['A']]['desc'][:16]} x {feats[p['B']]['desc'][:22]}", p["A"], p["B"]) for p in chosen]
 assert len(set(nm for nm, _, _ in PAIRS)) == len(PAIRS), "pair names collide; lengthen the name slices"

@@ -406,7 +406,7 @@ if "mag_sweep" not in pf:                    # describability threshold of the e
 # ----------------------------------------------------------------------------- 3 gate 1
 log("=== stage 3: gate 1 under both methods ===")
 G1 = ck("gate1")
-concepts = sorted({p["A"] for p in CAND["pairs"]} | {p["B"] for p in CAND["pairs"]})
+concepts = sorted(feats)                     # every Neuronpedia candidate (<= 4 per family), not only those in anchor x concerning pairs
 for i in concepts:
     if i in G1:
         continue
@@ -421,25 +421,70 @@ for i in concepts:
     log(f"g1 {i:>7} Li {max(li_s):.1f} {'PASS' if G1[i]['li_pass'] else 'fail'} | "
         f"adapter {max(ad_s):.1f} {'PASS' if G1[i]['ad_pass'] else 'fail'} | {feats[i]['desc'][:40]}")
 
-ok = {i for i in concepts if G1[i]["li_pass"] and G1[i]["ad_pass"]}
-pairs_all = [p for p in CAND["pairs"] if p["A"] in ok and p["B"] in ok]
-# 12 pairs: spread across anchors and concerning families, strongest minority signal first
-pairs_all.sort(key=lambda p: -p["acts_A_B"]["10%"][1])
-chosen, per_fam = [], Counter()
-for p in pairs_all:
-    if per_fam[p["B_family"]] >= 2 or len(chosen) >= 12:
+ok = sorted(i for i in concepts if G1[i]["li_pass"] and G1[i]["ad_pass"])
+log(f"gate 1: Li pass {sum(G1[i]['li_pass'] for i in concepts)}/{len(concepts)}, adapter pass "
+    f"{sum(G1[i]['ad_pass'] for i in concepts)}/{len(concepts)}, both {len(ok)}/{len(concepts)}")
+
+# Pair pool: any two concepts that pass gate 1 under BOTH methods, from different families
+# (the anchor x concerning restriction left no pairs on this SAE: most cooking/spice features fail
+# gate 1 under the adapter). Gates 2 and 3 are recomputed here at the injection magnitude; the 10%
+# share is required only for the 10% row (pairs failing gate 3 at 10% skip that share). Each unordered
+# pair runs in both directions (A majority / B minority, then swapped).
+B_SHARES = [0.75, 0.5, 0.25, 0.1]
+
+
+@torch.no_grad()
+def gate3(ia, ib):
+    m, acts = mag_for(ia, ib), {}
+    for bs in B_SHARES:
+        a_ = sae_encode(compose(ia, ib, 1 - bs) * m)
+        acts[f"{round(bs*100)}%"] = [round(float(a_[ia]), 3), round(float(a_[ib]), 3)]
+    core = all(acts[k][0] > 0 and acts[k][1] > 0 for k in ("75%", "50%", "25%"))
+    return core, acts
+
+
+directed = {}
+for ia in ok:
+    for ib in ok:
+        if ia == ib or feats[ia]["family"] == feats[ib]["family"]:
+            continue
+        cos = float(unit(ia) @ unit(ib))
+        if abs(cos) >= 0.1:
+            continue
+        core, acts = gate3(ia, ib)
+        if not core:
+            continue
+        directed[(ia, ib)] = {"A": ia, "B": ib, "A_family": feats[ia]["family"], "B_family": feats[ib]["family"],
+                              "A_desc": feats[ia]["desc"], "B_desc": feats[ib]["desc"], "cos": round(cos, 4),
+                              "inject_mag": round(mag_for(ia, ib), 3), "acts_A_B": acts,
+                              "has_10pct": acts["10%"][0] > 0 and acts["10%"][1] > 0}
+unordered = {}
+for (ia, ib), p in directed.items():
+    k = tuple(sorted((ia, ib)))
+    if (ib, ia) in directed:                    # keep only pairs valid in both directions
+        unordered[k] = min(p["acts_A_B"]["25%"][1], directed[(ib, ia)]["acts_A_B"]["25%"][1])
+log(f"directed pairs passing gates 2+3 (75/50/25): {len(directed)}; unordered valid both ways: {len(unordered)}")
+# up to 6 unordered pairs, strongest minority-at-25% first, at most 2 per family combination, at most 3 per family
+chosen_u, per_combo, per_fam = [], Counter(), Counter()
+for k in sorted(unordered, key=lambda k: -unordered[k]):
+    fa, fb = feats[k[0]]["family"], feats[k[1]]["family"]
+    combo = tuple(sorted((fa, fb)))
+    if per_combo[combo] >= 2 or per_fam[fa] >= 3 or per_fam[fb] >= 3 or len(chosen_u) >= 6:
         continue
-    chosen.append(p); per_fam[p["B_family"]] += 1
-if len(chosen) < 12:
-    for p in pairs_all:
-        if p not in chosen and len(chosen) < 12:
-            chosen.append(p)
+    chosen_u.append(k); per_combo[combo] += 1; per_fam[fa] += 1; per_fam[fb] += 1
+if len(chosen_u) < 6:
+    for k in sorted(unordered, key=lambda k: -unordered[k]):
+        if k not in chosen_u and len(chosen_u) < 6:
+            chosen_u.append(k)
+chosen = [directed[(a_, b_)] for (a_, b_) in chosen_u] + [directed[(b_, a_)] for (a_, b_) in chosen_u]
 PAIRS = [(f"{feats[p['A']]['desc'][:16]} x {feats[p['B']]['desc'][:22]}", p["A"], p["B"]) for p in chosen]
-json.dump({"pairs": chosen, "n": len(chosen)}, open(f"{W}/pairs_final.json", "w"), indent=1)
-log(f"final pairs: {len(PAIRS)}")
+assert len(set(nm for nm, _, _ in PAIRS)) == len(PAIRS), "pair names collide; lengthen the name slices"
+NO10 = {(p["A"], p["B"]) for p in chosen if not p["has_10pct"]}
+json.dump({"pairs": chosen, "n": len(chosen), "gate1_both_pass": ok}, open(f"{W}/pairs_final.json", "w"), indent=1)
+log(f"final pairs: {len(PAIRS)} directed ({len(chosen_u)} unordered x 2 directions); without a 10% row: {len(NO10)}")
 for nm, a_, b_ in PAIRS:
-    log("   ", nm)
-assert len(PAIRS) >= 6, "too few pairs survived gate 1; stop and look"
+    log(f"    {nm}   [{feats[a_]['family']} x {feats[b_]['family']}]" + ("  (no 10%)" if (a_, b_) in NO10 else ""))
+assert len(chosen_u) >= 3, "too few pairs survived gates; stop and look"
 
 # ----------------------------------------------------------------------------- 3b describability threshold
 # For H6 (parity winner tracks the single-concept describability threshold): every concept in the
@@ -473,7 +518,7 @@ def sweep(tag, genfn, res):
     for al in ALPHAS:
         for nm, ia, ib in PAIRS:
             key = (tag, nm, al)
-            if key in res:
+            if key in res or (al == 0.9 and (ia, ib) in NO10):
                 continue
             v, m = compose(ia, ib, al), mag_for(ia, ib)
             texts = genfn(v, N_DESC, m, seed_of(tag, ia, ib, al))
@@ -508,7 +553,7 @@ LI = sweep("li", lambda v, n, m, s: gen_li(v, n, m, seed=s), LI)
 for nm, ia, ib in PAIRS:                          # greedy, their protocol, one per cell
     for al in ALPHAS:
         key = ("li_greedy", nm, al)
-        if key in LI:
+        if key in LI or (al == 0.9 and (ia, ib) in NO10):
             continue
         t_ = gen_li(compose(ia, ib, al), 1, mag_for(ia, ib), greedy=True)[0]
         s = score(t_, [ia, ib]); LI[key] = [{"label": t_, "hit_A": s[ia], "hit_B": s[ib]}]

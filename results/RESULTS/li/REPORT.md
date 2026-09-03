@@ -136,7 +136,7 @@ List prompt ("list every distinct concept", 8 draws per pair, a concept counts i
 The list prompt does not recover the minority below parity for either method beyond the two
 flagged pairs; at parity it adds a little for the adapter (0.8% to 6.2% both).
 
-Random-direction floor (20 directions x 9 latents = 180 per method): Li 0/180, adapter 1/180, rank-64 1/180.
+Random-direction floor, rerun at 20 directions x 12 latents = 240 per method (`51_floors240.py`, `floors240.pkl`): Li 0/240, adapter 0/240, rank-64 1/240. (Original 20 x 9 run: 0, 1, 1 of 180.) Goodfire rerun at 20 x 12: scalar-affine 1/240, rank-16 0/240, at both scale 1.0 and 2.1.
 
 ## Per pair at parity, both directions
 
@@ -224,7 +224,7 @@ concept under the method, not of the vector.
   exclusion rule 64 / 0 / 0 and 48 / 0 / 0.
 - Figure: per-pair parity table, 40 draws per pair per method; it makes the "concept-specific,
   method-specific winner" point visually and needs no statistics.
-- Sample sizes: 12 directed pairs x 20 = 240 per share, 40 at 10%, floors 180 per method.
+- Sample sizes: 12 directed pairs x 20 = 240 per share, 40 at 10%, floors 240 per method (20 directions x 12 latents).
 - Limitations paragraph: scorer sensitivity (gate 1 pass rate), the co-occurrence confound and
   the exclusion rule, no 10% row for most pairs at the trained magnitude, H6 underpowered.
 - Method-comparison caveat: Li runs on base Llama and the adapters on Instruct; that is

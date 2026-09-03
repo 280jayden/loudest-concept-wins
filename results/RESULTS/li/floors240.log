@@ -1,0 +1,13 @@
+01:59:35 === load ===
+02:00:21 Instruct + base loaded
+02:00:21 === Part A: Llama Scope floors at 20 x 12 ===
+02:00:29 Llama Scope targets (12): pair latents [6595, 35308, 39388, 51141, 59899, 73564, 76330, 86616, 125117] + extra [5048, 6791, 9661]
+02:00:42   floor240 [li]: 0/240 false positives
+02:00:54   floor240 [adapter]: 0/240 false positives
+02:01:04   floor240 [adapter64]: 1/240 false positives
+02:01:04 === Part B: Goodfire floors at 20 x 12 ===
+02:01:43   floor240 goodfire [sa @ 1.0x]: 1/240 false positives
+02:01:57   floor240 goodfire [sa @ 2.1x]: 1/240 false positives
+02:02:13   floor240 goodfire [lr16 @ 1.0x]: 0/240 false positives
+02:02:29   floor240 goodfire [lr16 @ 2.1x]: 0/240 false positives
+02:02:29 DONE

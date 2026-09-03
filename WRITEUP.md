@@ -163,7 +163,7 @@ Three checks:
 |---|---|
 | concept B scored on vectors holding only concept A | 0/240 |
 | concept B scored on vectors holding only concept B | 184/240 (76.7%) |
-| a concept scored against random directions | 0/144 `<<RERUN AT 240 BEFORE SUBMITTING>>` |
+| a concept scored against random directions (20 directions x 12 latents) | 1/240 scalar affine, 0/240 rank-16 |
 
 The first two are the 0% and 100% rows of the main result table.
 

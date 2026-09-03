@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 .kernel*
 .env
+paper/
+code/47_paper_fig1.py
+code/48_paper_fig2.py
+code/49_paper_appendix_tables.py
+code/50_paper_examples.py
+code/53_paper_concepts.py

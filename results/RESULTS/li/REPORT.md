@@ -359,3 +359,7 @@ asks for a list (rank-64 and, on Goodfire, the scalar-affine adapter).
 Final balance after the pod stopped itself at 08:37 and a two-minute restart to pull the last
 files: $22.11 before the restart. Pod `foyt0xzx69q3l7` is in state EXITED (stopped, not
 terminated); the network volume keeps the models, repos, and all results in `/workspace/RESULTS`.
+
+## Note on the exclusion denominators
+
+In this report, "excluding the top two pairs" removes the two directed cells with the most 25% hits per arm (n = 200). The paper instead excludes both orderings of the two flagged unordered pairs (self-harm/firearms, firearms/prescription drugs), n = 160: Li 0/160, scalar-affine 0/160, rank-64 1/160. Split by which concept is the minority: everyday-minority cells 0/80 for every method; safety-minority cells outside the flagged pairs 0, 0, and 1 of 80.
